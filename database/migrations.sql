@@ -1,6 +1,17 @@
 -- Portfolio Database Schema
 -- This script creates all the necessary tables for the portfolio application
 
+-- Create users table for authentication
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    role VARCHAR(50) DEFAULT 'admin',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Create profile table
 CREATE TABLE IF NOT EXISTS profiles (
     id SERIAL PRIMARY KEY,
@@ -115,6 +126,10 @@ INSERT INTO projects (title, description, image_url, project_url, github_url, te
 INSERT INTO publications (title, authors, journal, year, description, image_url, publication_url, color) VALUES
 ('Implementation of Microservices Architecture in E-Commerce Systems', 'Alvin Maulana, Dr. John Doe', 'International Journal of Software Engineering', 2023, 'This paper discusses the implementation and benefits of microservices architecture in large-scale e-commerce systems.', '/public/assets/pub1.jpg', 'https://doi.org/example1', 'red'),
 ('Performance Analysis of Go vs Node.js for Backend Development', 'Alvin Maulana', 'Tech Conference Proceedings', 2022, 'A comparative study analyzing the performance characteristics of Go and Node.js in various backend scenarios.', '/public/assets/pub2.jpg', 'https://doi.org/example2', 'orange');
+
+-- Sample admin user (password: admin123 - hashed with bcrypt)
+INSERT INTO users (email, password, name, role) VALUES
+('alvinramasaputra@portfolio.com', '$2a$10$N9qo8uLOickgx2ZMRZoMye.JDHjNWZuGJLfOlLQB3NQHF8qQBdPGi', 'Admin', 'admin');
 
 -- Create indexes for better query performance
 CREATE INDEX IF NOT EXISTS idx_experiences_type ON experiences(type);

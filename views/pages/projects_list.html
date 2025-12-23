@@ -1,0 +1,95 @@
+{{define "projects_list"}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Portfolio Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .neo-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+        }
+
+        .neo-btn {
+            border: 2px solid black;
+            box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+            transition: all 0.1s ease;
+        }
+
+        .neo-btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+    {{template "admin_nav" .}}
+
+    <main class="max-w-5xl mx-auto px-4 pb-12">
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold">Projects</h1>
+                <p class="text-gray-600">Manage your portfolio projects</p>
+            </div>
+            <a href="/admin/projects/new" class="bg-yellow-400 neo-btn px-4 py-2 rounded font-bold">
+                ➕ Add New
+            </a>
+        </div>
+
+        {{if .Success}}
+        <div class="bg-green-100 border-2 border-green-500 text-green-700 px-4 py-3 rounded mb-6">
+            {{if eq .Success "saved"}}Project saved successfully!{{end}}
+            {{if eq .Success "deleted"}}Project deleted successfully!{{end}}
+        </div>
+        {{end}}
+
+        {{if .Projects}}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {{range .Projects}}
+            <div class="bg-white border-4 border-black neo-shadow rounded-lg overflow-hidden">
+                {{if .ImageURL}}
+                <img src="{{.ImageURL}}" alt="{{.Title}}" class="w-full h-40 object-cover border-b-4 border-black">
+                {{else}}
+                <div class="w-full h-40 bg-gray-200 border-b-4 border-black flex items-center justify-center text-4xl">
+                    🚀</div>
+                {{end}}
+                <div class="p-4">
+                    <h3 class="font-bold text-lg">{{.Title}}</h3>
+                    <p class="text-gray-600 text-sm mt-1 line-clamp-2">{{.Description}}</p>
+                    {{if .TechStack}}
+                    <p class="text-xs text-gray-500 mt-2">{{.TechStack}}</p>
+                    {{end}}
+                    <div class="flex space-x-2 mt-4">
+                        <a href="/admin/projects/{{.ID}}/edit"
+                            class="bg-yellow-100 neo-btn px-3 py-1 rounded text-sm font-medium">
+                            Edit
+                        </a>
+                        <a href="/admin/projects/{{.ID}}/delete"
+                            class="bg-red-100 neo-btn px-3 py-1 rounded text-sm font-medium"
+                            onclick="return confirm('Are you sure you want to delete this project?')">
+                            Delete
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{end}}
+        </div>
+        {{else}}
+        <div class="bg-white border-4 border-black neo-shadow p-8 rounded-lg text-center">
+            <div class="text-4xl mb-4">🚀</div>
+            <p class="text-gray-600 mb-4">No projects yet.</p>
+            <a href="/admin/projects/new" class="inline-block bg-yellow-400 neo-btn px-4 py-2 rounded font-bold">
+                Add Your First Project
+            </a>
+        </div>
+        {{end}}
+    </main>
+
+    {{template "footer" .}}
+</body>
+
+</html>
+{{end}}

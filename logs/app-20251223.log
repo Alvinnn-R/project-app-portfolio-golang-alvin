@@ -7,3 +7,93 @@
 2025-12-23T13:56:18.238+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/portfolio", "Duration": "0s"}
 2025-12-23T13:56:24.244+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/", "Duration": "1.625ms"}
 2025-12-23T13:56:28.084+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/login", "Duration": "0s"}
+2025-12-23T14:35:03.293+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/login", "Duration": "504.5µs"}
+2025-12-23T14:37:03.657+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/login", "Duration": "0s"}
+2025-12-23T14:37:20.134+0700	WARN	handler/auth.go:57	Login failed	{"email": "alvinramasaputra29@gmail.com", "error": "invalid email or password"}
+2025-12-23T14:37:20.134+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/login", "Duration": "5.492ms"}
+2025-12-23T14:37:30.075+0700	WARN	handler/auth.go:57	Login failed	{"email": "alvinramasaputra29@gmail.com", "error": "invalid email or password"}
+2025-12-23T14:37:30.075+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/login", "Duration": "507.6µs"}
+2025-12-23T14:37:44.034+0700	WARN	handler/auth.go:57	Login failed	{"email": "alvinramasaputra29@gmail.com", "error": "invalid email or password"}
+2025-12-23T14:37:44.036+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/login", "Duration": "6.1594ms"}
+2025-12-23T14:37:49.317+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/api/v1", "Duration": "0s"}
+2025-12-23T14:37:50.132+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/api/v1", "Duration": "0s"}
+2025-12-23T14:37:50.282+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/api/v1", "Duration": "0s"}
+2025-12-23T14:37:50.436+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/api/v1", "Duration": "0s"}
+2025-12-23T14:37:50.579+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/api/v1", "Duration": "0s"}
+2025-12-23T14:37:53.666+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/", "Duration": "17.5389ms"}
+2025-12-23T14:38:13.512+0700	WARN	handler/auth.go:57	Login failed	{"email": "alvinramasaputra29@gmail.com", "error": "invalid email or password"}
+2025-12-23T14:38:13.512+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/login", "Duration": "0s"}
+2025-12-23T14:38:32.717+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/", "Duration": "2.0444ms"}
+2025-12-23T14:38:37.065+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin", "Duration": "0s"}
+2025-12-23T14:38:37.080+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/page401", "Duration": "0s"}
+2025-12-23T14:38:39.205+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/login", "Duration": "0s"}
+2025-12-23T14:39:28.607+0700	WARN	handler/auth.go:57	Login failed	{"email": "alvinramasaputra29@gmail.com", "error": "invalid email or password"}
+2025-12-23T14:39:28.608+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/login", "Duration": "1.0658ms"}
+2025-12-23T16:36:34.878+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/", "Duration": "83.1808ms"}
+2025-12-23T16:36:35.347+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/favicon.ico", "Duration": "0s"}
+2025-12-23T16:51:16.755+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin", "Duration": "0s"}
+2025-12-23T16:51:16.763+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/page401", "Duration": "0s"}
+2025-12-23T16:51:19.014+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/login", "Duration": "0s"}
+2025-12-23T16:51:37.273+0700	WARN	handler/auth.go:57	Login failed	{"email": "alvinramasaputra29@gmail.com", "error": "invalid email or password"}
+2025-12-23T16:51:37.273+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/login", "Duration": "6.0414ms"}
+2025-12-23T17:06:00.423+0700	WARN	handler/auth.go:57	Login failed	{"email": "alvinramasaputra@portfolio.com", "error": "invalid email or password"}
+2025-12-23T17:06:00.425+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/login", "Duration": "83.4155ms"}
+2025-12-23T17:06:07.201+0700	WARN	handler/auth.go:57	Login failed	{"email": "alvinramasaputra@portfolio.com", "error": "invalid email or password"}
+2025-12-23T17:06:07.201+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/login", "Duration": "82.7244ms"}
+2025-12-23T17:06:10.087+0700	WARN	handler/auth.go:57	Login failed	{"email": "alvinramasaputra@portfolio.com", "error": "invalid email or password"}
+2025-12-23T17:06:10.087+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/login", "Duration": "84.8439ms"}
+2025-12-23T17:06:14.939+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/", "Duration": "1.2542ms"}
+2025-12-23T17:15:26.257+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/login", "Duration": "0s"}
+2025-12-23T17:22:51.781+0700	WARN	handler/auth.go:57	Login failed	{"email": "alvinramasaputra@portfolio.com", "error": "invalid email or password"}
+2025-12-23T17:22:51.781+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/login", "Duration": "86.2044ms"}
+2025-12-23T17:40:41.996+0700	WARN	handler/auth.go:57	Login failed	{"email": "alvinramasaputra@portfolio.com", "error": "invalid email or password"}
+2025-12-23T17:40:41.997+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/login", "Duration": "87.6174ms"}
+2025-12-23T17:41:01.919+0700	ERROR	repository/user.go:49	Failed to get user by email	{"error": "no rows in result set", "email": "admin@portfolio.com"}
+2025-12-23T17:41:01.919+0700	WARN	handler/auth.go:57	Login failed	{"email": "admin@portfolio.com", "error": "invalid email or password"}
+2025-12-23T17:41:01.919+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/login", "Duration": "504.9µs"}
+2025-12-23T17:41:06.312+0700	ERROR	repository/user.go:49	Failed to get user by email	{"error": "no rows in result set", "email": "admin@portfolio.com"}
+2025-12-23T17:41:06.313+0700	WARN	handler/auth.go:57	Login failed	{"email": "admin@portfolio.com", "error": "invalid email or password"}
+2025-12-23T17:41:06.313+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/login", "Duration": "505.1µs"}
+2025-12-23T17:41:33.946+0700	WARN	handler/auth.go:57	Login failed	{"email": "alvinramasaputra@portfolio.com", "error": "invalid email or password"}
+2025-12-23T17:41:33.946+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/login", "Duration": "82.6527ms"}
+2025-12-23T17:43:40.248+0700	INFO	handler/auth.go:74	User logged in	{"email": "alvinramasaputra@portfolio.com"}
+2025-12-23T17:43:40.248+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/login", "Duration": "81.1145ms"}
+2025-12-23T17:43:40.266+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/dashboard", "Duration": "11.3484ms"}
+2025-12-23T17:43:46.475+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/profile", "Duration": "504.3µs"}
+2025-12-23T17:43:59.829+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/dashboard", "Duration": "1.0761ms"}
+2025-12-23T17:44:03.184+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/experiences/new", "Duration": "506.9µs"}
+2025-12-23T17:44:06.368+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/experiences", "Duration": "685.9µs"}
+2025-12-23T17:44:11.736+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/experiences", "Duration": "506.7µs"}
+2025-12-23T17:44:13.637+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/profile", "Duration": "0s"}
+2025-12-23T17:44:15.537+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/skills", "Duration": "504.6µs"}
+2025-12-23T17:44:17.479+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/experiences", "Duration": "0s"}
+2025-12-23T17:44:20.241+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/experiences/new", "Duration": "0s"}
+2025-12-23T17:44:28.225+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/experiences", "Duration": "0s"}
+2025-12-23T17:44:30.249+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/projects", "Duration": "506.2µs"}
+2025-12-23T17:44:31.906+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/projects/new", "Duration": "0s"}
+2025-12-23T17:44:37.747+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/projects", "Duration": "0s"}
+2025-12-23T17:51:18.652+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/experiences", "Duration": "506.1µs"}
+2025-12-23T17:51:21.075+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/skills", "Duration": "504.1µs"}
+2025-12-23T17:51:22.005+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/projects", "Duration": "503.9µs"}
+2025-12-23T17:51:23.093+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/profile", "Duration": "0s"}
+2025-12-23T17:51:24.812+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/profile", "Duration": "507.3µs"}
+2025-12-23T17:51:46.186+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/profile", "Duration": "3.5997ms"}
+2025-12-23T17:51:47.355+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/profile", "Duration": "504.5µs"}
+2025-12-23T17:51:50.819+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/dashboard", "Duration": "8.7309ms"}
+2025-12-23T17:51:52.035+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/profile", "Duration": "504.2µs"}
+2025-12-23T17:51:53.192+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/experiences", "Duration": "644.2µs"}
+2025-12-23T17:51:54.773+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/experiences", "Duration": "765.3µs"}
+2025-12-23T17:51:56.634+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/logout", "Duration": "0s"}
+2025-12-23T17:51:58.481+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/dashboard", "Duration": "1.0252ms"}
+2025-12-23T17:52:00.988+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/profile", "Duration": "504.2µs"}
+2025-12-23T17:53:07.799+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/admin/profile/save", "Duration": "6.9882ms"}
+2025-12-23T17:53:07.804+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/dashboard?success=profile", "Duration": "1.0736ms"}
+2025-12-23T17:53:07.918+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/public/assets/uploads/profile/1766487187793435500_IMG_2624-200x200.jpg", "Duration": "72.9517ms"}
+2025-12-23T17:53:11.836+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/projects", "Duration": "0s"}
+2025-12-23T17:53:19.103+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/projects/1/edit", "Duration": "0s"}
+2025-12-23T17:53:27.462+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/projects/1/edit", "Duration": "0s"}
+2025-12-23T17:53:30.879+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/projects/new", "Duration": "0s"}
+2025-12-23T17:55:26.605+0700	ERROR	repository/portfolio.go:354	Failed to create project	{"error": "ERROR: insert or update on table \"projects\" violates foreign key constraint \"fk_projects_profile\" (SQLSTATE 23503)"}
+2025-12-23T17:55:26.605+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/admin/projects/save", "Duration": "31.959ms"}
+2025-12-23T17:55:47.702+0700	ERROR	repository/portfolio.go:354	Failed to create project	{"error": "ERROR: insert or update on table \"projects\" violates foreign key constraint \"fk_projects_profile\" (SQLSTATE 23503)"}
+2025-12-23T17:55:47.702+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/admin/projects/save", "Duration": "13.7524ms"}

@@ -1,0 +1,118 @@
+{{define "dashboard"}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Portfolio Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .neo-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+        }
+
+        .neo-shadow-sm {
+            box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+        }
+
+        .neo-btn {
+            border: 2px solid black;
+            box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+            transition: all 0.1s ease;
+        }
+
+        .neo-btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+    {{template "admin_nav" .}}
+
+    <main class="max-w-7xl mx-auto px-4 pb-12">
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold">Dashboard</h1>
+            <p class="text-gray-600">Welcome back! Manage your portfolio content here.</p>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <a href="/admin/experiences"
+                class="bg-cyan-400 border-4 border-black neo-shadow p-6 rounded-lg hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+                <div class="text-4xl mb-2">💼</div>
+                <div class="text-3xl font-bold">{{.Stats.experiences}}</div>
+                <div class="font-medium">Experiences</div>
+            </a>
+            <a href="/admin/skills"
+                class="bg-pink-400 border-4 border-black neo-shadow p-6 rounded-lg hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+                <div class="text-4xl mb-2">🛠️</div>
+                <div class="text-3xl font-bold">{{.Stats.skills}}</div>
+                <div class="font-medium">Skills</div>
+            </a>
+            <a href="/admin/projects"
+                class="bg-yellow-400 border-4 border-black neo-shadow p-6 rounded-lg hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+                <div class="text-4xl mb-2">🚀</div>
+                <div class="text-3xl font-bold">{{.Stats.projects}}</div>
+                <div class="font-medium">Projects</div>
+            </a>
+            <a href="/admin/publications"
+                class="bg-lime-400 border-4 border-black neo-shadow p-6 rounded-lg hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+                <div class="text-4xl mb-2">📚</div>
+                <div class="text-3xl font-bold">{{.Stats.publications}}</div>
+                <div class="font-medium">Publications</div>
+            </a>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="bg-white border-4 border-black neo-shadow p-6 rounded-lg mb-8">
+            <h2 class="text-xl font-bold mb-4">Quick Actions</h2>
+            <div class="flex flex-wrap gap-4">
+                <a href="/admin/profile" class="bg-gray-100 neo-btn px-4 py-2 rounded font-medium">
+                    ✏️ Edit Profile
+                </a>
+                <a href="/admin/experiences/new" class="bg-cyan-100 neo-btn px-4 py-2 rounded font-medium">
+                    ➕ Add Experience
+                </a>
+                <a href="/admin/skills/new" class="bg-pink-100 neo-btn px-4 py-2 rounded font-medium">
+                    ➕ Add Skill
+                </a>
+                <a href="/admin/projects/new" class="bg-yellow-100 neo-btn px-4 py-2 rounded font-medium">
+                    ➕ Add Project
+                </a>
+                <a href="/admin/publications/new" class="bg-lime-100 neo-btn px-4 py-2 rounded font-medium">
+                    ➕ Add Publication
+                </a>
+            </div>
+        </div>
+
+        <!-- Profile Preview -->
+        {{if .Profile}}
+        <div class="bg-white border-4 border-black neo-shadow p-6 rounded-lg">
+            <h2 class="text-xl font-bold mb-4">Profile Preview</h2>
+            <div class="flex items-center space-x-4">
+                {{if .Profile.PhotoURL}}
+                <img src="{{.Profile.PhotoURL}}" alt="Profile"
+                    class="w-20 h-20 rounded-full border-4 border-black object-cover">
+                {{else}}
+                <div
+                    class="w-20 h-20 rounded-full border-4 border-black bg-gray-200 flex items-center justify-center text-2xl">
+                    👤</div>
+                {{end}}
+                <div>
+                    <h3 class="text-xl font-bold">{{.Profile.Name}}</h3>
+                    <p class="text-gray-600">{{.Profile.Title}}</p>
+                    <p class="text-sm text-gray-500">{{.Profile.Email}}</p>
+                </div>
+            </div>
+        </div>
+        {{end}}
+    </main>
+
+    {{template "footer" .}}
+</body>
+
+</html>
+{{end}}

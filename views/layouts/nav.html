@@ -1,0 +1,49 @@
+{{define "admin_nav"}}
+<nav class="bg-white border-b-4 border-black mb-6">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between items-center h-16">
+            <div class="flex items-center space-x-4">
+                <a href="/admin/dashboard" class="text-xl font-bold">📁 Portfolio Admin</a>
+            </div>
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="/admin/dashboard" class="px-3 py-2 font-medium hover:bg-gray-100 rounded">Dashboard</a>
+                <a href="/admin/profile" class="px-3 py-2 font-medium hover:bg-gray-100 rounded">Profile</a>
+                <a href="/admin/experiences" class="px-3 py-2 font-medium hover:bg-gray-100 rounded">Experiences</a>
+                <a href="/admin/skills" class="px-3 py-2 font-medium hover:bg-gray-100 rounded">Skills</a>
+                <a href="/admin/projects" class="px-3 py-2 font-medium hover:bg-gray-100 rounded">Projects</a>
+                <a href="/admin/publications" class="px-3 py-2 font-medium hover:bg-gray-100 rounded">Publications</a>
+                <div class="border-l-2 border-gray-300 h-6 mx-2"></div>
+                <a href="/" target="_blank" class="px-3 py-2 font-medium text-blue-600 hover:bg-blue-50 rounded">View
+                    Site →</a>
+                <a href="/logout" class="px-4 py-2 bg-red-500 text-white font-medium neo-btn rounded">Logout</a>
+            </div>
+            <div class="md:hidden">
+                <button onclick="toggleMobileMenu()" class="p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="hidden md:hidden pb-4">
+            <a href="/admin/dashboard" class="block px-3 py-2 font-medium hover:bg-gray-100 rounded">Dashboard</a>
+            <a href="/admin/profile" class="block px-3 py-2 font-medium hover:bg-gray-100 rounded">Profile</a>
+            <a href="/admin/experiences" class="block px-3 py-2 font-medium hover:bg-gray-100 rounded">Experiences</a>
+            <a href="/admin/skills" class="block px-3 py-2 font-medium hover:bg-gray-100 rounded">Skills</a>
+            <a href="/admin/projects" class="block px-3 py-2 font-medium hover:bg-gray-100 rounded">Projects</a>
+            <a href="/admin/publications" class="block px-3 py-2 font-medium hover:bg-gray-100 rounded">Publications</a>
+            <a href="/" target="_blank" class="block px-3 py-2 font-medium text-blue-600 hover:bg-blue-50 rounded">View
+                Site →</a>
+            <a href="/logout" class="block px-3 py-2 font-medium text-red-600 hover:bg-red-50 rounded">Logout</a>
+        </div>
+    </div>
+</nav>
+<script>
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobileMenu');
+        menu.classList.toggle('hidden');
+    }
+</script>
+{{end}}

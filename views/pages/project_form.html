@@ -1,0 +1,132 @@
+{{define "project_form"}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{if .Project}}Edit{{else}}Add{{end}} Project - Portfolio Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .neo-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+        }
+
+        .neo-input {
+            border: 2px solid black;
+            box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+        }
+
+        .neo-input:focus {
+            outline: none;
+            box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+        }
+
+        .neo-btn {
+            border: 2px solid black;
+            box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+            transition: all 0.1s ease;
+        }
+
+        .neo-btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+    {{template "admin_nav" .}}
+
+    <main class="max-w-3xl mx-auto px-4 pb-12">
+        <div class="mb-8">
+            <a href="/admin/projects" class="text-gray-600 hover:text-black">← Back to Projects</a>
+            <h1 class="text-3xl font-bold mt-2">{{if .Project}}Edit{{else}}Add{{end}} Project</h1>
+        </div>
+
+        {{if .Error}}
+        <div class="bg-red-100 border-2 border-red-500 text-red-700 px-4 py-3 rounded mb-6">
+            {{.Error}}
+        </div>
+        {{end}}
+
+        <form method="POST" action="/admin/projects/save" enctype="multipart/form-data"
+            class="bg-white border-4 border-black neo-shadow p-6 rounded-lg">
+            {{if .Project}}
+            <input type="hidden" name="id" value="{{.Project.ID}}">
+            <input type="hidden" name="existing_image" value="{{.Project.ImageURL}}">
+            {{end}}
+
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-sm font-bold mb-2">Title *</label>
+                    <input type="text" name="title" value="{{if .Project}}{{.Project.Title}}{{end}}"
+                        class="w-full px-4 py-3 neo-input rounded" required placeholder="e.g. E-Commerce Platform">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2">Description</label>
+                    <textarea name="description" rows="4" class="w-full px-4 py-3 neo-input rounded"
+                        placeholder="Describe your project...">{{if .Project}}{{.Project.Description}}{{end}}</textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2">Tech Stack</label>
+                    <input type="text" name="tech_stack" value="{{if .Project}}{{.Project.TechStack}}{{end}}"
+                        class="w-full px-4 py-3 neo-input rounded" placeholder="e.g. Go, PostgreSQL, Docker">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2">Project Image</label>
+                    {{if .Project}}{{if .Project.ImageURL}}
+                    <div class="mb-3">
+                        <img src="{{.Project.ImageURL}}" alt="Current Image" class="w-48 h-32 object-cover rounded-lg border-2 border-black">
+                        <p class="text-sm text-gray-500 mt-1">Current image</p>
+                    </div>
+                    {{end}}{{end}}
+                    <input type="file" name="image" accept="image/*"
+                        class="w-full px-4 py-3 neo-input rounded bg-white">
+                    <p class="text-sm text-gray-500 mt-1">Max 5MB. Allowed: jpg, jpeg, png, gif, webp</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Project URL</label>
+                        <input type="url" name="project_url" value="{{if .Project}}{{.Project.ProjectURL}}{{end}}"
+                            class="w-full px-4 py-3 neo-input rounded" placeholder="https://...">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-2">GitHub URL</label>
+                        <input type="url" name="github_url" value="{{if .Project}}{{.Project.GithubURL}}{{end}}"
+                            class="w-full px-4 py-3 neo-input rounded" placeholder="https://github.com/...">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2">Color</label>
+                    <select name="color" class="w-full px-4 py-3 neo-input rounded">
+                        <option value="cyan" {{if .Project}}{{if eq .Project.Color "cyan" }}selected{{end}}{{end}}>Cyan
+                        </option>
+                        <option value="pink" {{if .Project}}{{if eq .Project.Color "pink" }}selected{{end}}{{end}}>Pink
+                        </option>
+                        <option value="yellow" {{if .Project}}{{if eq .Project.Color "yellow" }}selected{{end}}{{end}}>
+                            Yellow</option>
+                        <option value="lime" {{if .Project}}{{if eq .Project.Color "lime" }}selected{{end}}{{end}}>Lime
+                        </option>
+                        <option value="orange" {{if .Project}}{{if eq .Project.Color "orange" }}selected{{end}}{{end}}>
+                            Orange</option>
+                        <option value="purple" {{if .Project}}{{if eq .Project.Color "purple" }}selected{{end}}{{end}}>
+                            Purple</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-end space-x-4">
+                <a href="/admin/projects" class="bg-gray-200 neo-btn px-6 py-3 rounded font-bold">Cancel</a>
+                <button type="submit" class="bg-yellow-400 neo-btn px-6 py-3 rounded font-bold">
+                    {{if .Project}}Update{{else}}Create{{end}} Project
+                </button>
+            </div>
+        </form>
+    </main>
+
+    {{template "footer" .}}
+</body>
+
+</html>
+{{end}}

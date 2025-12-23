@@ -159,3 +159,26 @@ INSERT INTO publications (
     'https://example.com/publication-smart-agriculture',
     'black'
 );
+
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    role VARCHAR(50) DEFAULT 'admin',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+INSERT INTO users (
+    email,
+    password,
+    name,
+    role
+) VALUES (
+    'alvinramasaputra29@gmail.com',
+    'alvin29', 
+    'Alvin Rama Saputra',
+    'admin'
+);

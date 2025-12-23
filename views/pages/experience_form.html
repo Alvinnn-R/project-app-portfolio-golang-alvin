@@ -1,0 +1,130 @@
+{{define "experience_form"}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{if .Experience}}Edit{{else}}Add{{end}} Experience - Portfolio Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .neo-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+        }
+
+        .neo-input {
+            border: 2px solid black;
+            box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+        }
+
+        .neo-input:focus {
+            outline: none;
+            box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+        }
+
+        .neo-btn {
+            border: 2px solid black;
+            box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+            transition: all 0.1s ease;
+        }
+
+        .neo-btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+    {{template "admin_nav" .}}
+
+    <main class="max-w-3xl mx-auto px-4 pb-12">
+        <div class="mb-8">
+            <a href="/admin/experiences" class="text-gray-600 hover:text-black">← Back to Experiences</a>
+            <h1 class="text-3xl font-bold mt-2">{{if .Experience}}Edit{{else}}Add{{end}} Experience</h1>
+        </div>
+
+        {{if .Error}}
+        <div class="bg-red-100 border-2 border-red-500 text-red-700 px-4 py-3 rounded mb-6">
+            {{.Error}}
+        </div>
+        {{end}}
+
+        <form method="POST" action="/admin/experiences/save"
+            class="bg-white border-4 border-black neo-shadow p-6 rounded-lg">
+            {{if .Experience}}
+            <input type="hidden" name="id" value="{{.Experience.ID}}">
+            {{end}}
+
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-sm font-bold mb-2">Title *</label>
+                    <input type="text" name="title" value="{{if .Experience}}{{.Experience.Title}}{{end}}"
+                        class="w-full px-4 py-3 neo-input rounded" required placeholder="e.g. Software Engineer">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2">Organization *</label>
+                    <input type="text" name="organization" value="{{if .Experience}}{{.Experience.Organization}}{{end}}"
+                        class="w-full px-4 py-3 neo-input rounded" required placeholder="e.g. Tech Company Inc.">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Period</label>
+                        <input type="text" name="period" value="{{if .Experience}}{{.Experience.Period}}{{end}}"
+                            class="w-full px-4 py-3 neo-input rounded" placeholder="e.g. Jan 2023 - Present">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Type *</label>
+                        <select name="type" class="w-full px-4 py-3 neo-input rounded" required>
+                            <option value="">Select Type</option>
+                            {{range .Types}}
+                            <option value="{{.}}" {{if $.Experience}}{{if eq $.Experience.Type
+                                .}}selected{{end}}{{end}}>
+                                {{if eq . "work"}}💼 Work{{end}}
+                                {{if eq . "internship"}}🎓 Internship{{end}}
+                                {{if eq . "campus"}}🏫 Campus{{end}}
+                                {{if eq . "competition"}}🏆 Competition{{end}}
+                            </option>
+                            {{end}}
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2">Description</label>
+                    <textarea name="description" rows="4" class="w-full px-4 py-3 neo-input rounded"
+                        placeholder="Describe your responsibilities and achievements...">{{if .Experience}}{{.Experience.Description}}{{end}}</textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2">Color (optional)</label>
+                    <select name="color" class="w-full px-4 py-3 neo-input rounded">
+                        <option value="">Auto (based on type)</option>
+                        <option value="cyan" {{if .Experience}}{{if eq .Experience.Color "cyan"
+                            }}selected{{end}}{{end}}>Cyan</option>
+                        <option value="pink" {{if .Experience}}{{if eq .Experience.Color "pink"
+                            }}selected{{end}}{{end}}>Pink</option>
+                        <option value="yellow" {{if .Experience}}{{if eq .Experience.Color "yellow"
+                            }}selected{{end}}{{end}}>Yellow</option>
+                        <option value="purple" {{if .Experience}}{{if eq .Experience.Color "purple"
+                            }}selected{{end}}{{end}}>Purple</option>
+                        <option value="lime" {{if .Experience}}{{if eq .Experience.Color "lime"
+                            }}selected{{end}}{{end}}>Lime</option>
+                        <option value="orange" {{if .Experience}}{{if eq .Experience.Color "orange"
+                            }}selected{{end}}{{end}}>Orange</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-end space-x-4">
+                <a href="/admin/experiences" class="bg-gray-200 neo-btn px-6 py-3 rounded font-bold">Cancel</a>
+                <button type="submit" class="bg-cyan-400 neo-btn px-6 py-3 rounded font-bold">
+                    {{if .Experience}}Update{{else}}Create{{end}} Experience
+                </button>
+            </div>
+        </form>
+    </main>
+
+    {{template "footer" .}}
+</body>
+
+</html>
+{{end}}
