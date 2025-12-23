@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{if .Profile.Name}}{{.Profile.Name}}{{else}}Alvin Rama Saputra{{end}} - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom neobrutalist styles */
+        .neo-border {
+            border: 4px solid black;
+        }
+
+        .neo-shadow {
+            box-shadow: 8px 8px 0 0 black;
+        }
+
+        .neo-button {
+            border: 4px solid black;
+            transition: all 0.2s;
+            box-shadow: 6px 6px 0 0 black;
+        }
+
+        .neo-button:hover {
+            transform: translate(3px, 3px);
+            box-shadow: 3px 3px 0 0 black;
+        }
+
+        .neo-card {
+            border: 4px solid black;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 6px 6px 0 0 black;
+        }
+
+        .neo-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0 0 black;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-black font-sans">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white border-b-4 border-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-black uppercase">ARS</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="font-bold hover:underline hover:decoration-4">Home</a>
+                    <a href="#about" class="font-bold hover:underline hover:decoration-4">About</a>
+                    <a href="#experience" class="font-bold hover:underline hover:decoration-4">Experience</a>
+                    <a href="#projects" class="font-bold hover:underline hover:decoration-4">Projects</a>
+                    <a href="#publications" class="font-bold hover:underline hover:decoration-4">Publications</a>
+                    <a href="#skills" class="font-bold hover:underline hover:decoration-4">Skills</a>
+                    <a href="#contact" class="font-bold hover:underline hover:decoration-4">Contact</a>
+                </div>
+                <button class="md:hidden font-black text-2xl" onclick="toggleMobileMenu()">☰</button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <a href="#home" class="block py-2 font-bold hover:underline">Home</a>
+                <a href="#about" class="block py-2 font-bold hover:underline">About</a>
+                <a href="#experience" class="block py-2 font-bold hover:underline">Experience</a>
+                <a href="#projects" class="block py-2 font-bold hover:underline">Projects</a>
+                <a href="#publications" class="block py-2 font-bold hover:underline">Publications</a>
+                <a href="#skills" class="block py-2 font-bold hover:underline">Skills</a>
+                <a href="#contact" class="block py-2 font-bold hover:underline">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home"
+        class="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 bg-gradient-to-br from-cyan-100 via-purple-100 to-pink-100">
+        <div class="max-w-7xl w-full">
+            <div class="bg-white neo-border neo-shadow p-8 sm:p-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <!-- Left: Name and Description -->
+                    <div>
+                        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black mb-6 uppercase leading-tight">
+                            {{if .Profile.Name}}
+                            {{.Profile.Name}}
+                            {{else}}
+                            Alvin Rama<br />Saputra
+                            {{end}}
+                        </h1>
+                        <div class="space-y-4 mb-8">
+                            {{if .Profile.Title}}
+                            {{range split .Profile.Title "|"}}
+                            <p class="text-xl sm:text-2xl font-bold text-gray-800">
+                                {{.}}
+                            </p>
+                            {{end}}
+                            {{else}}
+                            <p class="text-xl sm:text-2xl font-bold text-gray-800">
+                                Software Developer
+                            </p>
+                            <p class="text-xl sm:text-2xl font-bold text-gray-800">
+                                Informatics Student
+                            </p>
+                            <p class="text-xl sm:text-2xl font-bold text-gray-800">
+                                IoT & Web Enthusiast
+                            </p>
+                            {{end}}
+                        </div>
+                        <p class="text-lg font-medium text-gray-700 leading-relaxed mb-8">
+                            {{if .Profile.Description}}
+                            {{.Profile.Description}}
+                            {{else}}
+                            Passionate about creating innovative solutions that bridge the digital and physical worlds.
+                            I specialize in building scalable web applications and IoT systems that make a real impact.
+                            {{end}}
+                        </p>
+
+                        <!-- Social Links -->
+                        <div class="grid grid-cols-2 gap-4">
+                            {{if .Profile.LinkedInURL}}
+                            <a href="{{.Profile.LinkedInURL}}" target="_blank"
+                                class="neo-button bg-blue-500 text-white px-4 py-3 font-bold text-center uppercase hover:bg-blue-600">
+                                LinkedIn
+                            </a>
+                            {{else}}
+                            <a href="https://linkedin.com/in/alvinrama" target="_blank"
+                                class="neo-button bg-blue-500 text-white px-4 py-3 font-bold text-center uppercase hover:bg-blue-600">
+                                LinkedIn
+                            </a>
+                            {{end}}
+                            {{if .Profile.GithubURL}}
+                            <a href="{{.Profile.GithubURL}}" target="_blank"
+                                class="neo-button bg-gray-800 text-white px-4 py-3 font-bold text-center uppercase hover:bg-gray-900">
+                                GitHub
+                            </a>
+                            {{else}}
+                            <a href="https://github.com/alvinrama" target="_blank"
+                                class="neo-button bg-gray-800 text-white px-4 py-3 font-bold text-center uppercase hover:bg-gray-900">
+                                GitHub
+                            </a>
+                            {{end}}
+                            {{if .Profile.Email}}
+                            <a href="mailto:{{.Profile.Email}}"
+                                class="neo-button bg-red-500 text-white px-4 py-3 font-bold text-center uppercase hover:bg-red-600">
+                                Email
+                            </a>
+                            {{else}}
+                            <a href="mailto:alvin.rama@example.com"
+                                class="neo-button bg-red-500 text-white px-4 py-3 font-bold text-center uppercase hover:bg-red-600">
+                                Email
+                            </a>
+                            {{end}}
+                            {{if .Profile.CVURL}}
+                            <a href="{{.Profile.CVURL}}" target="_blank"
+                                class="neo-button bg-green-500 text-white px-4 py-3 font-bold text-center uppercase hover:bg-green-600">
+                                Download CV
+                            </a>
+                            {{else}}
+                            <a href="#"
+                                class="neo-button bg-green-500 text-white px-4 py-3 font-bold text-center uppercase hover:bg-green-600">
+                                Download CV
+                            </a>
+                            {{end}}
+                        </div>
+                    </div>
+
+                    <!-- Right: Photo -->
+                    <div class="flex justify-center">
+                        <div
+                            class="bg-gradient-to-br from-purple-400 to-pink-400 neo-border neo-shadow p-4 w-full max-w-md">
+                            <div class="bg-white neo-border w-full h-96 sm:h-[500px] flex items-center justify-center">
+                                {{if .Profile.PhotoURL}}
+                                <img src="{{.Profile.PhotoURL}}" alt="{{.Profile.Name}}"
+                                    class="w-full h-full object-cover">
+                                {{else}}
+                                <div class="text-center">
+                                    <span class="text-8xl">👨‍💻</span>
+                                    <p class="font-black text-2xl mt-4">PHOTO</p>
+                                </div>
+                                {{end}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-indigo-100 to-blue-100">
+        <div class="max-w-7xl mx-auto">
+            <h2
+                class="text-5xl sm:text-6xl font-black mb-12 uppercase neo-border inline-block px-8 py-4 bg-indigo-400 neo-shadow">
+                Experience
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+                {{if .Experiences}}
+                {{range .Experiences}}
+                <div class="bg-white neo-card p-8">
+                    <div class="bg-{{.Color}}-400 neo-border px-4 py-2 inline-block mb-6">
+                        <h3 class="text-2xl font-black uppercase">{{.Title}}</h3>
+                    </div>
+                    <p class="text-xl font-bold mb-2">{{.Organization}}</p>
+                    <p class="text-base font-bold text-gray-600 mb-4">{{.Period}}</p>
+                    {{if .Description}}
+                    <ul class="space-y-2 text-base font-medium text-gray-700">
+                        {{range split .Description "|"}}
+                        <li class="flex items-start">
+                            <span class="mr-2 font-black">•</span>
+                            <span>{{.}}</span>
+                        </li>
+                        {{end}}
+                    </ul>
+                    {{end}}
+                </div>
+                {{end}}
+                {{else}}
+                <!-- Default Experience Cards -->
+                <div class="bg-white neo-card p-8">
+                    <div class="bg-cyan-400 neo-border px-4 py-2 inline-block mb-6">
+                        <h3 class="text-2xl font-black uppercase">Full Stack Developer</h3>
+                    </div>
+                    <p class="text-xl font-bold mb-2">Tech Company Inc.</p>
+                    <p class="text-base font-bold text-gray-600 mb-4">Jan 2024 - Present</p>
+                    <ul class="space-y-2 text-base font-medium text-gray-700">
+                        <li class="flex items-start">
+                            <span class="mr-2 font-black">•</span>
+                            <span>Developed and maintained web applications using React and Node.js</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 font-black">•</span>
+                            <span>Collaborated with cross-functional teams to deliver high-quality products</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 font-black">•</span>
+                            <span>Implemented RESTful APIs and database optimization strategies</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white neo-card p-8">
+                    <div class="bg-pink-400 neo-border px-4 py-2 inline-block mb-6">
+                        <h3 class="text-2xl font-black uppercase">IoT Engineer Intern</h3>
+                    </div>
+                    <p class="text-xl font-bold mb-2">Smart Solutions Ltd.</p>
+                    <p class="text-base font-bold text-gray-600 mb-4">Jun 2023 - Dec 2023</p>
+                    <ul class="space-y-2 text-base font-medium text-gray-700">
+                        <li class="flex items-start">
+                            <span class="mr-2 font-black">•</span>
+                            <span>Designed and implemented IoT sensor networks for smart buildings</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 font-black">•</span>
+                            <span>Developed real-time monitoring dashboards using MQTT and WebSocket</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 font-black">•</span>
+                            <span>Worked with ESP32, Arduino, and Raspberry Pi platforms</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white neo-card p-8">
+                    <div class="bg-yellow-400 neo-border px-4 py-2 inline-block mb-6">
+                        <h3 class="text-2xl font-black uppercase">Research Assistant</h3>
+                    </div>
+                    <p class="text-xl font-bold mb-2">University Research Lab</p>
+                    <p class="text-base font-bold text-gray-600 mb-4">Aug 2022 - May 2023</p>
+                    <ul class="space-y-2 text-base font-medium text-gray-700">
+                        <li class="flex items-start">
+                            <span class="mr-2 font-black">•</span>
+                            <span>Conducted research on machine learning applications in IoT systems</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 font-black">•</span>
+                            <span>Published findings in academic conferences and journals</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 font-black">•</span>
+                            <span>Mentored undergraduate students on research methodologies</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white neo-card p-8">
+                    <div class="bg-lime-400 neo-border px-4 py-2 inline-block mb-6">
+                        <h3 class="text-2xl font-black uppercase">Web Dev Intern</h3>
+                    </div>
+                    <p class="text-xl font-bold mb-2">Digital Agency Co.</p>
+                    <p class="text-base font-bold text-gray-600 mb-4">Jan 2022 - May 2022</p>
+                    <ul class="space-y-2 text-base font-medium text-gray-700">
+                        <li class="flex items-start">
+                            <span class="mr-2 font-black">•</span>
+                            <span>Built responsive websites using HTML, CSS, JavaScript, and Bootstrap</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 font-black">•</span>
+                            <span>Optimized website performance and SEO for client projects</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 font-black">•</span>
+                            <span>Collaborated with designers to implement pixel-perfect designs</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white neo-card p-8">
+                    <div class="bg-orange-400 neo-border px-4 py-2 inline-block mb-6">
+                        <h3 class="text-2xl font-black uppercase">Tech Lead - Student Org</h3>
+                    </div>
+                    <p class="text-xl font-bold mb-2">Computing Student Association</p>
+                    <p class="text-base font-bold text-gray-600 mb-4">Sep 2021 - Aug 2022</p>
+                    <ul class="space-y-2 text-base font-medium text-gray-700">
+                        <li class="flex items-start">
+                            <span class="mr-2 font-black">•</span>
+                            <span>Led team of 15 students in organizing tech workshops and hackathons</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 font-black">•</span>
+                            <span>Managed organization's website and social media platforms</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 font-black">•</span>
+                            <span>Facilitated knowledge sharing sessions on web and IoT development</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white neo-card p-8">
+                    <div class="bg-purple-400 neo-border px-4 py-2 inline-block mb-6">
+                        <h3 class="text-2xl font-black uppercase">National Competition</h3>
+                    </div>
+                    <p class="text-xl font-bold mb-2">Programming Competition 2023</p>
+                    <p class="text-base font-bold text-gray-600 mb-4">Winner - 1st Place</p>
+                    <ul class="space-y-2 text-base font-medium text-gray-700">
+                        <li class="flex items-start">
+                            <span class="mr-2 font-black">•</span>
+                            <span>Competed against 100+ teams from universities across the country</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 font-black">•</span>
+                            <span>Developed innovative solution for smart city waste management</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 font-black">•</span>
+                            <span>Presented project to industry judges and secured top prize</span>
+                        </li>
+                    </ul>
+                </div>
+                {{end}}
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 bg-yellow-100">
+        <div class="max-w-6xl mx-auto">
+            <h2
+                class="text-5xl sm:text-6xl font-black mb-12 uppercase neo-border inline-block px-8 py-4 bg-yellow-300 neo-shadow">
+                About Me
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+                <div class="bg-white neo-card p-8">
+                    <div class="bg-orange-400 neo-border px-4 py-2 inline-block mb-4">
+                        <h3 class="text-2xl font-black uppercase">Education</h3>
+                    </div>
+                    <h4 class="text-xl font-black mb-2">Bachelor of Informatics</h4>
+                    <p class="text-lg font-bold text-gray-700 mb-2">University Name</p>
+                    <p class="text-base font-bold text-gray-600 mb-4">2021 - 2025</p>
+                    <p class="text-base font-medium text-gray-700">
+                        Focused on software engineering, web development, IoT systems, and computer networks.
+                    </p>
+                </div>
+
+                <div class="bg-white neo-card p-8">
+                    <div class="bg-lime-400 neo-border px-4 py-2 inline-block mb-4">
+                        <h3 class="text-2xl font-black uppercase">Passion</h3>
+                    </div>
+                    <p class="text-lg font-medium text-gray-700 leading-relaxed">
+                        {{if .Profile.Description}}
+                        {{.Profile.Description}}
+                        {{else}}
+                        I am driven by the challenge of solving complex problems through technology.
+                        Whether it's building responsive web applications or programming embedded systems,
+                        I love the process of turning ideas into reality. My goal is to create solutions
+                        that are not only functional but also elegant and user-friendly.
+                        {{end}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-100 to-cyan-100">
+        <div class="max-w-7xl mx-auto">
+            <h2
+                class="text-5xl sm:text-6xl font-black mb-12 uppercase neo-border inline-block px-8 py-4 bg-cyan-400 neo-shadow">
+                Projects
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+                {{if .Projects}}
+                {{range .Projects}}
+                <div class="bg-white neo-card overflow-hidden">
+                    <div class="bg-{{.Color}}-400 h-48 flex items-center justify-center border-b-4 border-black">
+                        {{if .ImageURL}}
+                        <img src="{{.ImageURL}}" alt="{{.Title}}" class="w-full h-full object-cover">
+                        {{else}}
+                        <span class="text-4xl font-black uppercase">{{.Title}}</span>
+                        {{end}}
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-black uppercase">{{.Title}}</h3>
+                            <span class="bg-{{.Color}}-400 neo-border px-3 py-1 text-sm font-bold">Done</span>
+                        </div>
+                        <p class="text-base font-medium mb-4 text-gray-700">
+                            {{.Description}}
+                        </p>
+                        {{if .TechStack}}
+                        <div class="flex flex-wrap gap-2">
+                            {{range split .TechStack ","}}
+                            <span class="bg-gray-100 neo-border px-3 py-1 text-sm font-bold">{{.}}</span>
+                            {{end}}
+                        </div>
+                        {{end}}
+                        {{if .GithubURL}}
+                        <div class="mt-4">
+                            <a href="{{.GithubURL}}" target="_blank"
+                                class="neo-button bg-gray-800 text-white px-4 py-2 font-bold text-sm inline-block hover:bg-gray-900">
+                                View on GitHub
+                            </a>
+                        </div>
+                        {{end}}
+                    </div>
+                </div>
+                {{end}}
+                {{else}}
+                <!-- Default Project Cards -->
+                <div class="bg-white neo-card overflow-hidden">
+                    <div class="bg-cyan-400 h-48 flex items-center justify-center border-b-4 border-black">
+                        <span class="text-4xl font-black uppercase">IoT</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-black uppercase">IoT Smart Home</h3>
+                            <span class="bg-cyan-400 neo-border px-3 py-1 text-sm font-bold">Done</span>
+                        </div>
+                        <p class="text-base font-medium mb-4 text-gray-700">
+                            Comprehensive smart home automation system using Arduino and web technologies.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-cyan-100 neo-border px-3 py-1 text-sm font-bold">Arduino</span>
+                            <span class="bg-cyan-100 neo-border px-3 py-1 text-sm font-bold">Node.js</span>
+                            <span class="bg-cyan-100 neo-border px-3 py-1 text-sm font-bold">MQTT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white neo-card overflow-hidden">
+                    <div class="bg-pink-400 h-48 flex items-center justify-center border-b-4 border-black">
+                        <span class="text-4xl font-black uppercase">E-COM</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-black uppercase">E-Commerce</h3>
+                            <span class="bg-pink-400 neo-border px-3 py-1 text-sm font-bold">Active</span>
+                        </div>
+                        <p class="text-base font-medium mb-4 text-gray-700">
+                            Full-stack e-commerce solution with modern payment integration and inventory management.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-pink-100 neo-border px-3 py-1 text-sm font-bold">React</span>
+                            <span class="bg-pink-100 neo-border px-3 py-1 text-sm font-bold">Express</span>
+                            <span class="bg-pink-100 neo-border px-3 py-1 text-sm font-bold">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white neo-card overflow-hidden">
+                    <div class="bg-purple-400 h-48 flex items-center justify-center border-b-4 border-black">
+                        <span class="text-4xl font-black uppercase">API</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-black uppercase">Weather App</h3>
+                            <span class="bg-purple-400 neo-border px-3 py-1 text-sm font-bold">Done</span>
+                        </div>
+                        <p class="text-base font-medium mb-4 text-gray-700">
+                            Real-time weather data visualization with sensor integration and forecasting.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-purple-100 neo-border px-3 py-1 text-sm font-bold">Python</span>
+                            <span class="bg-purple-100 neo-border px-3 py-1 text-sm font-bold">Flask</span>
+                            <span class="bg-purple-100 neo-border px-3 py-1 text-sm font-bold">APIs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white neo-card overflow-hidden">
+                    <div class="bg-yellow-400 h-48 flex items-center justify-center border-b-4 border-black">
+                        <span class="text-4xl font-black uppercase">TASK</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-black uppercase">Task Manager</h3>
+                            <span class="bg-yellow-400 neo-border px-3 py-1 text-sm font-bold">Done</span>
+                        </div>
+                        <p class="text-base font-medium mb-4 text-gray-700">
+                            Collaborative task management platform with real-time updates and team features.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-yellow-100 neo-border px-3 py-1 text-sm font-bold">Next.js</span>
+                            <span class="bg-yellow-100 neo-border px-3 py-1 text-sm font-bold">MongoDB</span>
+                            <span class="bg-yellow-100 neo-border px-3 py-1 text-sm font-bold">Socket.io</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white neo-card overflow-hidden">
+                    <div class="bg-lime-400 h-48 flex items-center justify-center border-b-4 border-black">
+                        <span class="text-4xl font-black uppercase">NET</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-black uppercase">Sensor Network</h3>
+                            <span class="bg-lime-400 neo-border px-3 py-1 text-sm font-bold">Active</span>
+                        </div>
+                        <p class="text-base font-medium mb-4 text-gray-700">
+                            IoT dashboard for monitoring multiple sensor nodes with data analytics.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-lime-100 neo-border px-3 py-1 text-sm font-bold">ESP32</span>
+                            <span class="bg-lime-100 neo-border px-3 py-1 text-sm font-bold">Vue.js</span>
+                            <span class="bg-lime-100 neo-border px-3 py-1 text-sm font-bold">InfluxDB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white neo-card overflow-hidden">
+                    <div class="bg-orange-400 h-48 flex items-center justify-center border-b-4 border-black">
+                        <span class="text-4xl font-black uppercase">LMS</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-black uppercase">LMS Platform</h3>
+                            <span class="bg-orange-400 neo-border px-3 py-1 text-sm font-bold">Done</span>
+                        </div>
+                        <p class="text-base font-medium mb-4 text-gray-700">
+                            Educational platform for online courses with video streaming and quiz features.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-orange-100 neo-border px-3 py-1 text-sm font-bold">Laravel</span>
+                            <span class="bg-orange-100 neo-border px-3 py-1 text-sm font-bold">MySQL</span>
+                            <span class="bg-orange-100 neo-border px-3 py-1 text-sm font-bold">Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
+                {{end}}
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-rose-100 to-red-100">
+        <div class="max-w-6xl mx-auto">
+            <h2
+                class="text-5xl sm:text-6xl font-black mb-12 uppercase neo-border inline-block px-8 py-4 bg-rose-400 neo-shadow">
+                Publications
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+                {{if .Publications}}
+                {{range .Publications}}
+                <div class="bg-white neo-card overflow-hidden">
+                    <div class="bg-{{.Color}}-400 h-48 flex items-center justify-center border-b-4 border-black">
+                        {{if .ImageURL}}
+                        <img src="{{.ImageURL}}" alt="{{.Title}}" class="w-full h-full object-cover">
+                        {{else}}
+                        <span class="text-4xl font-black uppercase">{{.Year}}</span>
+                        {{end}}
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="bg-{{.Color}}-400 neo-border px-4 py-2 font-black">{{.Year}}</span>
+                        </div>
+                        <h3 class="text-2xl font-black mb-3 uppercase">{{.Title}}</h3>
+                        <p class="text-base font-medium text-gray-700">
+                            {{.Description}}
+                        </p>
+                        {{if .Authors}}
+                        <p class="text-sm font-bold text-gray-600 mt-2">By: {{.Authors}}</p>
+                        {{end}}
+                        {{if .PublicationURL}}
+                        <div class="mt-4">
+                            <a href="{{.PublicationURL}}" target="_blank"
+                                class="neo-button bg-{{.Color}}-400 text-black px-4 py-2 font-bold text-sm inline-block">
+                                Read More
+                            </a>
+                        </div>
+                        {{end}}
+                    </div>
+                </div>
+                {{end}}
+                {{else}}
+                <!-- Default Publication Cards -->
+                <div class="bg-white neo-card overflow-hidden">
+                    <div class="bg-red-400 h-48 flex items-center justify-center border-b-4 border-black">
+                        <span class="text-4xl font-black uppercase">2024</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="bg-red-400 neo-border px-4 py-2 font-black">2024</span>
+                        </div>
+                        <h3 class="text-2xl font-black mb-3 uppercase">IoT Security Best Practices</h3>
+                        <p class="text-base font-medium text-gray-700">
+                            Published comprehensive article on implementing security measures in IoT systems,
+                            covering encryption, authentication, and secure communication protocols.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white neo-card overflow-hidden">
+                    <div class="bg-yellow-400 h-48 flex items-center justify-center border-b-4 border-black">
+                        <span class="text-4xl font-black uppercase">2023</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="bg-yellow-400 neo-border px-4 py-2 font-black">2023</span>
+                        </div>
+                        <h3 class="text-2xl font-black mb-3 uppercase">Hackathon Winner</h3>
+                        <p class="text-base font-medium text-gray-700">
+                            First place in Smart City Challenge for developing an intelligent traffic management
+                            system using IoT sensors and machine learning algorithms.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white neo-card overflow-hidden">
+                    <div class="bg-blue-400 h-48 flex items-center justify-center border-b-4 border-black">
+                        <span class="text-4xl font-black uppercase">2023-24</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="bg-blue-400 neo-border px-4 py-2 font-black">2023-24</span>
+                        </div>
+                        <h3 class="text-2xl font-black mb-3 uppercase">Community Speaker</h3>
+                        <p class="text-base font-medium text-gray-700">
+                            Regular speaker at local tech meetups and conferences, sharing knowledge on
+                            web development, IoT technologies, and software architecture.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white neo-card overflow-hidden">
+                    <div class="bg-green-400 h-48 flex items-center justify-center border-b-4 border-black">
+                        <span class="text-4xl font-black uppercase">OSS</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="bg-green-400 neo-border px-4 py-2 font-black">2022-24</span>
+                        </div>
+                        <h3 class="text-2xl font-black mb-3 uppercase">Open Source Contributor</h3>
+                        <p class="text-base font-medium text-gray-700">
+                            Active contributor to various open-source projects, focusing on IoT libraries
+                            and web development frameworks with 100+ contributions.
+                        </p>
+                    </div>
+                </div>
+                {{end}}
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-indigo-100 to-purple-100">
+        <div class="max-w-6xl mx-auto">
+            <h2
+                class="text-5xl sm:text-6xl font-black mb-12 uppercase neo-border inline-block px-8 py-4 bg-indigo-400 neo-shadow">
+                Skills
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+                {{if .Skills}}
+                {{range $category, $skills := .Skills}}
+                <div class="bg-white neo-card p-8">
+                    <div class="bg-cyan-400 neo-border px-6 py-3 inline-block mb-6">
+                        <h3 class="text-2xl font-black uppercase">{{$category}}</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        {{range $skills}}
+                        <span class="bg-gray-100 neo-border px-4 py-2 font-bold">{{.Name}}</span>
+                        {{end}}
+                    </div>
+                </div>
+                {{end}}
+                {{else}}
+                <!-- Default Skills Cards -->
+                <div class="bg-white neo-card p-8">
+                    <div class="bg-cyan-400 neo-border px-6 py-3 inline-block mb-6">
+                        <h3 class="text-2xl font-black uppercase">Languages</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-cyan-100 neo-border px-4 py-2 font-bold">JavaScript</span>
+                        <span class="bg-cyan-100 neo-border px-4 py-2 font-bold">Python</span>
+                        <span class="bg-cyan-100 neo-border px-4 py-2 font-bold">TypeScript</span>
+                        <span class="bg-cyan-100 neo-border px-4 py-2 font-bold">C++</span>
+                        <span class="bg-cyan-100 neo-border px-4 py-2 font-bold">PHP</span>
+                        <span class="bg-cyan-100 neo-border px-4 py-2 font-bold">SQL</span>
+                        <span class="bg-cyan-100 neo-border px-4 py-2 font-bold">Golang</span>
+                    </div>
+                </div>
+
+                <div class="bg-white neo-card p-8">
+                    <div class="bg-pink-400 neo-border px-6 py-3 inline-block mb-6">
+                        <h3 class="text-2xl font-black uppercase">Web Tech</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-pink-100 neo-border px-4 py-2 font-bold">React</span>
+                        <span class="bg-pink-100 neo-border px-4 py-2 font-bold">Next.js</span>
+                        <span class="bg-pink-100 neo-border px-4 py-2 font-bold">Vue.js</span>
+                        <span class="bg-pink-100 neo-border px-4 py-2 font-bold">Node.js</span>
+                        <span class="bg-pink-100 neo-border px-4 py-2 font-bold">Express</span>
+                        <span class="bg-pink-100 neo-border px-4 py-2 font-bold">Tailwind</span>
+                    </div>
+                </div>
+
+                <div class="bg-white neo-card p-8">
+                    <div class="bg-lime-400 neo-border px-6 py-3 inline-block mb-6">
+                        <h3 class="text-2xl font-black uppercase">IoT & Hardware</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-lime-100 neo-border px-4 py-2 font-bold">Arduino</span>
+                        <span class="bg-lime-100 neo-border px-4 py-2 font-bold">ESP32</span>
+                        <span class="bg-lime-100 neo-border px-4 py-2 font-bold">Raspberry Pi</span>
+                        <span class="bg-lime-100 neo-border px-4 py-2 font-bold">MQTT</span>
+                        <span class="bg-lime-100 neo-border px-4 py-2 font-bold">Sensors</span>
+                    </div>
+                </div>
+
+                <div class="bg-white neo-card p-8">
+                    <div class="bg-orange-400 neo-border px-6 py-3 inline-block mb-6">
+                        <h3 class="text-2xl font-black uppercase">Tools & DBs</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-orange-100 neo-border px-4 py-2 font-bold">Git</span>
+                        <span class="bg-orange-100 neo-border px-4 py-2 font-bold">Docker</span>
+                        <span class="bg-orange-100 neo-border px-4 py-2 font-bold">PostgreSQL</span>
+                        <span class="bg-orange-100 neo-border px-4 py-2 font-bold">MongoDB</span>
+                        <span class="bg-orange-100 neo-border px-4 py-2 font-bold">MySQL</span>
+                        <span class="bg-orange-100 neo-border px-4 py-2 font-bold">Redis</span>
+                    </div>
+                </div>
+                {{end}}
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-teal-100 to-green-100">
+        <div class="max-w-5xl mx-auto">
+            <h2
+                class="text-5xl sm:text-6xl font-black mb-12 uppercase neo-border inline-block px-8 py-4 bg-teal-400 neo-shadow text-center">
+                Get In Touch
+            </h2>
+            <div class="bg-white neo-card neo-shadow p-12 mt-12">
+                <p class="text-3xl font-black mb-12 text-center uppercase">
+                    Let's Build Something Amazing!
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {{if .Profile.Email}}
+                    <a href="mailto:{{.Profile.Email}}"
+                        class="neo-button bg-red-400 text-black px-6 py-6 font-black text-lg uppercase text-center hover:bg-red-500">
+                        📧 Email Me
+                    </a>
+                    {{else}}
+                    <a href="mailto:alvin.rama@example.com"
+                        class="neo-button bg-red-400 text-black px-6 py-6 font-black text-lg uppercase text-center hover:bg-red-500">
+                        📧 Email Me
+                    </a>
+                    {{end}}
+                    {{if .Profile.GithubURL}}
+                    <a href="{{.Profile.GithubURL}}" target="_blank"
+                        class="neo-button bg-gray-800 text-white px-6 py-6 font-black text-lg uppercase text-center hover:bg-gray-900">
+                        💻 GitHub
+                    </a>
+                    {{else}}
+                    <a href="https://github.com/alvinrama" target="_blank"
+                        class="neo-button bg-gray-800 text-white px-6 py-6 font-black text-lg uppercase text-center hover:bg-gray-900">
+                        💻 GitHub
+                    </a>
+                    {{end}}
+                    {{if .Profile.LinkedInURL}}
+                    <a href="{{.Profile.LinkedInURL}}" target="_blank"
+                        class="neo-button bg-blue-400 text-black px-6 py-6 font-black text-lg uppercase text-center hover:bg-blue-500">
+                        🔗 LinkedIn
+                    </a>
+                    {{else}}
+                    <a href="https://linkedin.com/in/alvinrama" target="_blank"
+                        class="neo-button bg-blue-400 text-black px-6 py-6 font-black text-lg uppercase text-center hover:bg-blue-500">
+                        🔗 LinkedIn
+                    </a>
+                    {{end}}
+                    {{if .Profile.CVURL}}
+                    <a href="{{.Profile.CVURL}}" target="_blank"
+                        class="neo-button bg-green-400 text-black px-6 py-6 font-black text-lg uppercase text-center hover:bg-green-500">
+                        📄 Download CV
+                    </a>
+                    {{else}}
+                    <a href="#"
+                        class="neo-button bg-green-400 text-black px-6 py-6 font-black text-lg uppercase text-center hover:bg-green-500">
+                        📄 Download CV
+                    </a>
+                    {{end}}
+                </div>
+
+                <!-- Contact Form -->
+                <div class="mt-12">
+                    <h3 class="text-2xl font-black mb-6 uppercase text-center">Or Send a Message</h3>
+                    <form id="contact-form" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <input type="text" name="name" placeholder="Your Name" required
+                                class="neo-border p-4 w-full font-bold focus:outline-none focus:ring-4 focus:ring-teal-400">
+                            <input type="email" name="email" placeholder="Your Email" required
+                                class="neo-border p-4 w-full font-bold focus:outline-none focus:ring-4 focus:ring-teal-400">
+                        </div>
+                        <input type="text" name="subject" placeholder="Subject" required
+                            class="neo-border p-4 w-full font-bold focus:outline-none focus:ring-4 focus:ring-teal-400">
+                        <textarea name="message" rows="4" placeholder="Your Message" required
+                            class="neo-border p-4 w-full font-bold focus:outline-none focus:ring-4 focus:ring-teal-400 resize-none"></textarea>
+                        <button type="submit"
+                            class="neo-button bg-teal-400 text-black px-8 py-4 font-black text-lg uppercase w-full hover:bg-teal-500">
+                            Send Message
+                        </button>
+                    </form>
+                    <div id="form-message" class="hidden mt-4 p-4 neo-border text-center font-bold"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 px-4 text-center border-t-4 border-white">
+        <p class="font-black text-xl uppercase mb-2">© 2025 {{if .Profile.Name}}{{.Profile.Name}}{{else}}Alvin Rama
+            Saputra{{end}}</p>
+        <p class="font-bold text-lg">All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Contact form handling
+        document.getElementById('contact-form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            const messageDiv = document.getElementById('form-message');
+
+            try {
+                const response = await fetch('/api/v1/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                const result = await response.json();
+                messageDiv.classList.remove('hidden', 'bg-red-100', 'bg-green-100');
+
+                if (response.ok) {
+                    messageDiv.classList.add('bg-green-100');
+                    messageDiv.textContent = 'Message sent successfully!';
+                    this.reset();
+                } else {
+                    messageDiv.classList.add('bg-red-100');
+                    messageDiv.textContent = result.message || 'Failed to send message. Please try again.';
+                }
+            } catch (error) {
+                messageDiv.classList.remove('hidden', 'bg-green-100');
+                messageDiv.classList.add('bg-red-100');
+                messageDiv.textContent = 'An error occurred. Please try again.';
+            }
+        });
+    </script>
+</body>
+
+</html>
