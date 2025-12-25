@@ -96,16 +96,27 @@ func (h *AdminHandler) ProfileSave(w http.ResponseWriter, r *http.Request) {
 	}
 
 	ctx := r.Context()
-	
+
 	// Handle photo upload
 	photoURL := r.FormValue("existing_photo")
 	if file, header, err := r.FormFile("photo"); err == nil {
 		defer file.Close()
-		if uploadedPath, err := utils.UploadFile(file, header, "uploads/profile"); err == nil {
-			photoURL = uploadedPath
-		} else {
-			h.log.Error("Failed to upload photo", zap.Error(err))
+		uploadedPath, uploadErr := utils.UploadFile(file, header, "uploads/profile")
+		if uploadErr != nil {
+			h.log.Error("Failed to upload photo", zap.Error(uploadErr))
+			h.renderProfileError(w, &dto.ProfileRequest{
+				Name:        r.FormValue("name"),
+				Title:       r.FormValue("title"),
+				Description: r.FormValue("description"),
+				PhotoURL:    photoURL,
+				Email:       r.FormValue("email"),
+				LinkedInURL: r.FormValue("linkedin_url"),
+				GithubURL:   r.FormValue("github_url"),
+				CVURL:       r.FormValue("cv_url"),
+			}, uploadErr.Error())
+			return
 		}
+		photoURL = uploadedPath
 	}
 
 	req := &dto.ProfileRequest{
@@ -414,11 +425,21 @@ func (h *AdminHandler) ProjectSave(w http.ResponseWriter, r *http.Request) {
 	imageURL := r.FormValue("existing_image")
 	if file, header, err := r.FormFile("image"); err == nil {
 		defer file.Close()
-		if uploadedPath, err := utils.UploadFile(file, header, "uploads/projects"); err == nil {
-			imageURL = uploadedPath
-		} else {
-			h.log.Error("Failed to upload project image", zap.Error(err))
+		uploadedPath, uploadErr := utils.UploadFile(file, header, "uploads/projects")
+		if uploadErr != nil {
+			h.log.Error("Failed to upload project image", zap.Error(uploadErr))
+			h.renderProjectError(w, &dto.ProjectRequest{
+				Title:       r.FormValue("title"),
+				Description: r.FormValue("description"),
+				ImageURL:    imageURL,
+				ProjectURL:  r.FormValue("project_url"),
+				GithubURL:   r.FormValue("github_url"),
+				TechStack:   r.FormValue("tech_stack"),
+				Color:       r.FormValue("color"),
+			}, uploadErr.Error())
+			return
 		}
+		imageURL = uploadedPath
 	}
 
 	req := &dto.ProjectRequest{

@@ -2,11 +2,9 @@ package service
 
 import (
 	"context"
-	"errors"
 	"session-19/dto"
 	"session-19/model"
 	"session-19/repository"
-	"strings"
 )
 
 // PortfolioServiceInterface defines the interface for portfolio service
@@ -69,21 +67,17 @@ func (s *PortfolioService) GetProfile(ctx context.Context) (*model.Profile, erro
 	return s.repo.GetProfile(ctx)
 }
 
-// CreateProfile creates a new profile with validation
+// CreateProfile creates a new profile
 func (s *PortfolioService) CreateProfile(ctx context.Context, req *dto.ProfileRequest) (*model.Profile, error) {
-	if err := req.Validate(); err != nil {
-		return nil, err
-	}
-
 	profile := &model.Profile{
-		Name:        strings.TrimSpace(req.Name),
-		Title:       strings.TrimSpace(req.Title),
-		Description: strings.TrimSpace(req.Description),
-		PhotoURL:    strings.TrimSpace(req.PhotoURL),
-		Email:       strings.TrimSpace(req.Email),
-		LinkedInURL: strings.TrimSpace(req.LinkedInURL),
-		GithubURL:   strings.TrimSpace(req.GithubURL),
-		CVURL:       strings.TrimSpace(req.CVURL),
+		Name:        req.Name,
+		Title:       req.Title,
+		Description: req.Description,
+		PhotoURL:    req.PhotoURL,
+		Email:       req.Email,
+		LinkedInURL: req.LinkedInURL,
+		GithubURL:   req.GithubURL,
+		CVURL:       req.CVURL,
 	}
 
 	if err := s.repo.CreateProfile(ctx, profile); err != nil {
@@ -93,22 +87,18 @@ func (s *PortfolioService) CreateProfile(ctx context.Context, req *dto.ProfileRe
 	return profile, nil
 }
 
-// UpdateProfile updates the profile with validation
+// UpdateProfile updates the profile
 func (s *PortfolioService) UpdateProfile(ctx context.Context, id int64, req *dto.ProfileRequest) (*model.Profile, error) {
-	if err := req.Validate(); err != nil {
-		return nil, err
-	}
-
 	profile := &model.Profile{
 		ID:          id,
-		Name:        strings.TrimSpace(req.Name),
-		Title:       strings.TrimSpace(req.Title),
-		Description: strings.TrimSpace(req.Description),
-		PhotoURL:    strings.TrimSpace(req.PhotoURL),
-		Email:       strings.TrimSpace(req.Email),
-		LinkedInURL: strings.TrimSpace(req.LinkedInURL),
-		GithubURL:   strings.TrimSpace(req.GithubURL),
-		CVURL:       strings.TrimSpace(req.CVURL),
+		Name:        req.Name,
+		Title:       req.Title,
+		Description: req.Description,
+		PhotoURL:    req.PhotoURL,
+		Email:       req.Email,
+		LinkedInURL: req.LinkedInURL,
+		GithubURL:   req.GithubURL,
+		CVURL:       req.CVURL,
 	}
 
 	if err := s.repo.UpdateProfile(ctx, profile); err != nil {
@@ -125,25 +115,18 @@ func (s *PortfolioService) GetAllExperiences(ctx context.Context) ([]model.Exper
 
 // GetExperienceByID retrieves an experience by ID
 func (s *PortfolioService) GetExperienceByID(ctx context.Context, id int64) (*model.Experience, error) {
-	if id <= 0 {
-		return nil, errors.New("invalid experience ID")
-	}
 	return s.repo.GetExperienceByID(ctx, id)
 }
 
-// CreateExperience creates a new experience with validation
+// CreateExperience creates a new experience
 func (s *PortfolioService) CreateExperience(ctx context.Context, req *dto.ExperienceRequest) (*model.Experience, error) {
-	if err := req.Validate(); err != nil {
-		return nil, err
-	}
-
 	exp := &model.Experience{
-		Title:        strings.TrimSpace(req.Title),
-		Organization: strings.TrimSpace(req.Organization),
-		Period:       strings.TrimSpace(req.Period),
-		Description:  strings.TrimSpace(req.Description),
-		Type:         strings.TrimSpace(req.Type),
-		Color:        getColorForType(req.Type, req.Color),
+		Title:        req.Title,
+		Organization: req.Organization,
+		Period:       req.Period,
+		Description:  req.Description,
+		Type:         req.Type,
+		Color:        portfolioGetColorForType(req.Type, req.Color),
 	}
 
 	if err := s.repo.CreateExperience(ctx, exp); err != nil {
@@ -153,24 +136,16 @@ func (s *PortfolioService) CreateExperience(ctx context.Context, req *dto.Experi
 	return exp, nil
 }
 
-// UpdateExperience updates an experience with validation
+// UpdateExperience updates an experience
 func (s *PortfolioService) UpdateExperience(ctx context.Context, id int64, req *dto.ExperienceRequest) (*model.Experience, error) {
-	if id <= 0 {
-		return nil, errors.New("invalid experience ID")
-	}
-
-	if err := req.Validate(); err != nil {
-		return nil, err
-	}
-
 	exp := &model.Experience{
 		ID:           id,
-		Title:        strings.TrimSpace(req.Title),
-		Organization: strings.TrimSpace(req.Organization),
-		Period:       strings.TrimSpace(req.Period),
-		Description:  strings.TrimSpace(req.Description),
-		Type:         strings.TrimSpace(req.Type),
-		Color:        getColorForType(req.Type, req.Color),
+		Title:        req.Title,
+		Organization: req.Organization,
+		Period:       req.Period,
+		Description:  req.Description,
+		Type:         req.Type,
+		Color:        portfolioGetColorForType(req.Type, req.Color),
 	}
 
 	if err := s.repo.UpdateExperience(ctx, exp); err != nil {
@@ -182,9 +157,6 @@ func (s *PortfolioService) UpdateExperience(ctx context.Context, id int64, req *
 
 // DeleteExperience deletes an experience
 func (s *PortfolioService) DeleteExperience(ctx context.Context, id int64) error {
-	if id <= 0 {
-		return errors.New("invalid experience ID")
-	}
 	return s.repo.DeleteExperience(ctx, id)
 }
 
@@ -195,31 +167,21 @@ func (s *PortfolioService) GetAllSkills(ctx context.Context) ([]model.Skill, err
 
 // GetSkillsByCategory retrieves skills by category
 func (s *PortfolioService) GetSkillsByCategory(ctx context.Context, category string) ([]model.Skill, error) {
-	if category == "" {
-		return nil, errors.New("category is required")
-	}
 	return s.repo.GetSkillsByCategory(ctx, category)
 }
 
 // GetSkillByID retrieves a skill by ID
 func (s *PortfolioService) GetSkillByID(ctx context.Context, id int64) (*model.Skill, error) {
-	if id <= 0 {
-		return nil, errors.New("invalid skill ID")
-	}
 	return s.repo.GetSkillByID(ctx, id)
 }
 
-// CreateSkill creates a new skill with validation
+// CreateSkill creates a new skill
 func (s *PortfolioService) CreateSkill(ctx context.Context, req *dto.SkillRequest) (*model.Skill, error) {
-	if err := req.Validate(); err != nil {
-		return nil, err
-	}
-
 	skill := &model.Skill{
-		Category: strings.TrimSpace(req.Category),
-		Name:     strings.TrimSpace(req.Name),
-		Level:    strings.TrimSpace(req.Level),
-		Color:    getColorForLevel(req.Level, req.Color),
+		Category: req.Category,
+		Name:     req.Name,
+		Level:    req.Level,
+		Color:    portfolioGetColorForLevel(req.Level, req.Color),
 	}
 
 	if err := s.repo.CreateSkill(ctx, skill); err != nil {
@@ -229,22 +191,14 @@ func (s *PortfolioService) CreateSkill(ctx context.Context, req *dto.SkillReques
 	return skill, nil
 }
 
-// UpdateSkill updates a skill with validation
+// UpdateSkill updates a skill
 func (s *PortfolioService) UpdateSkill(ctx context.Context, id int64, req *dto.SkillRequest) (*model.Skill, error) {
-	if id <= 0 {
-		return nil, errors.New("invalid skill ID")
-	}
-
-	if err := req.Validate(); err != nil {
-		return nil, err
-	}
-
 	skill := &model.Skill{
 		ID:       id,
-		Category: strings.TrimSpace(req.Category),
-		Name:     strings.TrimSpace(req.Name),
-		Level:    strings.TrimSpace(req.Level),
-		Color:    getColorForLevel(req.Level, req.Color),
+		Category: req.Category,
+		Name:     req.Name,
+		Level:    req.Level,
+		Color:    portfolioGetColorForLevel(req.Level, req.Color),
 	}
 
 	if err := s.repo.UpdateSkill(ctx, skill); err != nil {
@@ -256,9 +210,6 @@ func (s *PortfolioService) UpdateSkill(ctx context.Context, id int64, req *dto.S
 
 // DeleteSkill deletes a skill
 func (s *PortfolioService) DeleteSkill(ctx context.Context, id int64) error {
-	if id <= 0 {
-		return errors.New("invalid skill ID")
-	}
 	return s.repo.DeleteSkill(ctx, id)
 }
 
@@ -269,26 +220,19 @@ func (s *PortfolioService) GetAllProjects(ctx context.Context) ([]model.Project,
 
 // GetProjectByID retrieves a project by ID
 func (s *PortfolioService) GetProjectByID(ctx context.Context, id int64) (*model.Project, error) {
-	if id <= 0 {
-		return nil, errors.New("invalid project ID")
-	}
 	return s.repo.GetProjectByID(ctx, id)
 }
 
-// CreateProject creates a new project with validation
+// CreateProject creates a new project
 func (s *PortfolioService) CreateProject(ctx context.Context, req *dto.ProjectRequest) (*model.Project, error) {
-	if err := req.Validate(); err != nil {
-		return nil, err
-	}
-
 	project := &model.Project{
-		Title:       strings.TrimSpace(req.Title),
-		Description: strings.TrimSpace(req.Description),
-		ImageURL:    strings.TrimSpace(req.ImageURL),
-		ProjectURL:  strings.TrimSpace(req.ProjectURL),
-		GithubURL:   strings.TrimSpace(req.GithubURL),
-		TechStack:   strings.TrimSpace(req.TechStack),
-		Color:       getDefaultColor(req.Color, "cyan"),
+		Title:       req.Title,
+		Description: req.Description,
+		ImageURL:    req.ImageURL,
+		ProjectURL:  req.ProjectURL,
+		GithubURL:   req.GithubURL,
+		TechStack:   req.TechStack,
+		Color:       portfolioGetDefaultColor(req.Color, "cyan"),
 		ProfileID:   req.ProfileID,
 	}
 
@@ -299,25 +243,17 @@ func (s *PortfolioService) CreateProject(ctx context.Context, req *dto.ProjectRe
 	return project, nil
 }
 
-// UpdateProject updates a project with validation
+// UpdateProject updates a project
 func (s *PortfolioService) UpdateProject(ctx context.Context, id int64, req *dto.ProjectRequest) (*model.Project, error) {
-	if id <= 0 {
-		return nil, errors.New("invalid project ID")
-	}
-
-	if err := req.Validate(); err != nil {
-		return nil, err
-	}
-
 	project := &model.Project{
 		ID:          id,
-		Title:       strings.TrimSpace(req.Title),
-		Description: strings.TrimSpace(req.Description),
-		ImageURL:    strings.TrimSpace(req.ImageURL),
-		ProjectURL:  strings.TrimSpace(req.ProjectURL),
-		GithubURL:   strings.TrimSpace(req.GithubURL),
-		TechStack:   strings.TrimSpace(req.TechStack),
-		Color:       getDefaultColor(req.Color, "cyan"),
+		Title:       req.Title,
+		Description: req.Description,
+		ImageURL:    req.ImageURL,
+		ProjectURL:  req.ProjectURL,
+		GithubURL:   req.GithubURL,
+		TechStack:   req.TechStack,
+		Color:       portfolioGetDefaultColor(req.Color, "cyan"),
 		ProfileID:   req.ProfileID,
 	}
 
@@ -330,9 +266,6 @@ func (s *PortfolioService) UpdateProject(ctx context.Context, id int64, req *dto
 
 // DeleteProject deletes a project
 func (s *PortfolioService) DeleteProject(ctx context.Context, id int64) error {
-	if id <= 0 {
-		return errors.New("invalid project ID")
-	}
 	return s.repo.DeleteProject(ctx, id)
 }
 
@@ -343,27 +276,20 @@ func (s *PortfolioService) GetAllPublications(ctx context.Context) ([]model.Publ
 
 // GetPublicationByID retrieves a publication by ID
 func (s *PortfolioService) GetPublicationByID(ctx context.Context, id int64) (*model.Publication, error) {
-	if id <= 0 {
-		return nil, errors.New("invalid publication ID")
-	}
 	return s.repo.GetPublicationByID(ctx, id)
 }
 
-// CreatePublication creates a new publication with validation
+// CreatePublication creates a new publication
 func (s *PortfolioService) CreatePublication(ctx context.Context, req *dto.PublicationRequest) (*model.Publication, error) {
-	if err := req.Validate(); err != nil {
-		return nil, err
-	}
-
 	pub := &model.Publication{
-		Title:          strings.TrimSpace(req.Title),
-		Authors:        strings.TrimSpace(req.Authors),
-		Journal:        strings.TrimSpace(req.Journal),
+		Title:          req.Title,
+		Authors:        req.Authors,
+		Journal:        req.Journal,
 		Year:           req.Year,
-		Description:    strings.TrimSpace(req.Description),
-		ImageURL:       strings.TrimSpace(req.ImageURL),
-		PublicationURL: strings.TrimSpace(req.PublicationURL),
-		Color:          getDefaultColor(req.Color, "red"),
+		Description:    req.Description,
+		ImageURL:       req.ImageURL,
+		PublicationURL: req.PublicationURL,
+		Color:          portfolioGetDefaultColor(req.Color, "red"),
 	}
 
 	if err := s.repo.CreatePublication(ctx, pub); err != nil {
@@ -373,26 +299,18 @@ func (s *PortfolioService) CreatePublication(ctx context.Context, req *dto.Publi
 	return pub, nil
 }
 
-// UpdatePublication updates a publication with validation
+// UpdatePublication updates a publication
 func (s *PortfolioService) UpdatePublication(ctx context.Context, id int64, req *dto.PublicationRequest) (*model.Publication, error) {
-	if id <= 0 {
-		return nil, errors.New("invalid publication ID")
-	}
-
-	if err := req.Validate(); err != nil {
-		return nil, err
-	}
-
 	pub := &model.Publication{
 		ID:             id,
-		Title:          strings.TrimSpace(req.Title),
-		Authors:        strings.TrimSpace(req.Authors),
-		Journal:        strings.TrimSpace(req.Journal),
+		Title:          req.Title,
+		Authors:        req.Authors,
+		Journal:        req.Journal,
 		Year:           req.Year,
-		Description:    strings.TrimSpace(req.Description),
-		ImageURL:       strings.TrimSpace(req.ImageURL),
-		PublicationURL: strings.TrimSpace(req.PublicationURL),
-		Color:          getDefaultColor(req.Color, "red"),
+		Description:    req.Description,
+		ImageURL:       req.ImageURL,
+		PublicationURL: req.PublicationURL,
+		Color:          portfolioGetDefaultColor(req.Color, "red"),
 	}
 
 	if err := s.repo.UpdatePublication(ctx, pub); err != nil {
@@ -404,9 +322,6 @@ func (s *PortfolioService) UpdatePublication(ctx context.Context, id int64, req 
 
 // DeletePublication deletes a publication
 func (s *PortfolioService) DeletePublication(ctx context.Context, id int64) error {
-	if id <= 0 {
-		return errors.New("invalid publication ID")
-	}
 	return s.repo.DeletePublication(ctx, id)
 }
 
@@ -417,18 +332,14 @@ func (s *PortfolioService) GetPortfolioData(ctx context.Context) (*model.Portfol
 
 // SubmitContact handles contact form submission
 func (s *PortfolioService) SubmitContact(ctx context.Context, req *dto.ContactRequest) error {
-	if err := req.Validate(); err != nil {
-		return err
-	}
 	// In a real application, you would send an email or store the contact message
-	// For now, we just validate the request
 	return nil
 }
 
-// Helper functions
+// Helper functions for portfolio service
 
-// getColorForType returns a color based on experience type
-func getColorForType(expType, defaultColor string) string {
+// portfolioGetColorForType returns a color based on experience type
+func portfolioGetColorForType(expType, defaultColor string) string {
 	if defaultColor != "" {
 		return defaultColor
 	}
@@ -446,8 +357,8 @@ func getColorForType(expType, defaultColor string) string {
 	}
 }
 
-// getColorForLevel returns a color based on skill level
-func getColorForLevel(level, defaultColor string) string {
+// portfolioGetColorForLevel returns a color based on skill level
+func portfolioGetColorForLevel(level, defaultColor string) string {
 	if defaultColor != "" {
 		return defaultColor
 	}
@@ -463,8 +374,8 @@ func getColorForLevel(level, defaultColor string) string {
 	}
 }
 
-// getDefaultColor returns the provided color or default if empty
-func getDefaultColor(color, defaultColor string) string {
+// portfolioGetDefaultColor returns the provided color or default if empty
+func portfolioGetDefaultColor(color, defaultColor string) string {
 	if color != "" {
 		return color
 	}

@@ -82,7 +82,8 @@
                     <label class="block text-sm font-bold mb-2">Photo</label>
                     {{if .Profile}}{{if .Profile.PhotoURL}}
                     <div class="mb-3">
-                        <img src="{{.Profile.PhotoURL}}" alt="Current Photo" class="w-32 h-32 object-cover rounded-lg border-2 border-black">
+                        <img src="{{.Profile.PhotoURL}}" alt="Current Photo"
+                            class="w-32 h-32 object-cover rounded-lg border-2 border-black">
                         <p class="text-sm text-gray-500 mt-1">Current photo</p>
                     </div>
                     {{end}}{{end}}

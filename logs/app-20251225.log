@@ -1,0 +1,59 @@
+2025-12-25T05:00:53.221+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/", "Duration": "96.2239ms"}
+2025-12-25T05:00:53.279+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/public/assets/uploads/profile/1766487187793435500_IMG_2624-200x200.jpg", "Duration": "14.8405ms"}
+2025-12-25T05:00:53.281+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/public/assets/uploads/projects/1766487435189451300_screencapture-kampunganyar-glagah-id-2025-11-20-23_21_35.png", "Duration": "16.5765ms"}
+2025-12-25T05:00:53.732+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/favicon.ico", "Duration": "0s"}
+2025-12-25T05:01:38.723+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/login", "Duration": "0s"}
+2025-12-25T05:01:38.739+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/dashboard", "Duration": "1.4106ms"}
+2025-12-25T05:01:45.662+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/profile", "Duration": "504.5µs"}
+2025-12-25T05:02:05.666+0700	ERROR	handler/admin.go:107	Failed to upload photo	{"error": "file size exceeds maximum allowed size (5MB)"}
+2025-12-25T05:02:05.685+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/admin/profile/save", "Duration": "50.775ms"}
+2025-12-25T05:02:05.690+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/dashboard?success=profile", "Duration": "1.0716ms"}
+2025-12-25T05:02:09.938+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/", "Duration": "1.1454ms"}
+2025-12-25T05:02:22.464+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/", "Duration": "10.1576ms"}
+2025-12-25T05:02:23.270+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/", "Duration": "1.8359ms"}
+2025-12-25T05:02:23.683+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/", "Duration": "1.646ms"}
+2025-12-25T05:02:24.209+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/", "Duration": "1.0984ms"}
+2025-12-25T05:02:24.595+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/", "Duration": "1.6465ms"}
+2025-12-25T05:02:24.785+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/", "Duration": "1.0179ms"}
+2025-12-25T05:02:31.398+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/profile", "Duration": "504.6µs"}
+2025-12-25T05:02:39.976+0700	ERROR	handler/admin.go:107	Failed to upload photo	{"error": "file size exceeds maximum allowed size (5MB)"}
+2025-12-25T05:02:39.979+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/admin/profile/save", "Duration": "45.3106ms"}
+2025-12-25T05:02:39.984+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/dashboard?success=profile", "Duration": "1.0895ms"}
+2025-12-25T05:02:44.485+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/", "Duration": "1.0299ms"}
+2025-12-25T05:02:44.682+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/", "Duration": "1.1814ms"}
+2025-12-25T05:02:44.889+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/", "Duration": "1.047ms"}
+2025-12-25T05:02:45.041+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/", "Duration": "1.021ms"}
+2025-12-25T05:02:49.540+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/profile", "Duration": "0s"}
+2025-12-25T05:02:56.093+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/admin/profile/save", "Duration": "8.2668ms"}
+2025-12-25T05:02:56.097+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/dashboard?success=profile", "Duration": "505.4µs"}
+2025-12-25T05:02:56.185+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/public/assets/uploads/profile/1766613776090914700_Red_White_Modern_Merry_Christmas___Happy_New_Year_Card.png", "Duration": "60.29ms"}
+2025-12-25T05:02:59.435+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/", "Duration": "1.6276ms"}
+2025-12-25T05:02:59.464+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/public/assets/uploads/profile/1766613776090914700_Red_White_Modern_Merry_Christmas___Happy_New_Year_Card.png", "Duration": "505.1µs"}
+2025-12-25T05:03:12.091+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/profile", "Duration": "506µs"}
+2025-12-25T05:03:12.125+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/public/assets/uploads/profile/1766613776090914700_Red_White_Modern_Merry_Christmas___Happy_New_Year_Card.png", "Duration": "0s"}
+2025-12-25T05:03:25.698+0700	ERROR	handler/admin.go:107	Failed to upload photo	{"error": "file size exceeds maximum allowed size (5MB)"}
+2025-12-25T05:03:25.699+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/admin/profile/save", "Duration": "21.4856ms"}
+2025-12-25T05:03:25.704+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/dashboard?success=profile", "Duration": "1.0165ms"}
+2025-12-25T05:03:25.735+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/public/assets/uploads/profile/1766613776090914700_Red_White_Modern_Merry_Christmas___Happy_New_Year_Card.png", "Duration": "0s"}
+2025-12-25T05:03:30.204+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/profile", "Duration": "0s"}
+2025-12-25T05:03:30.244+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/public/assets/uploads/profile/1766613776090914700_Red_White_Modern_Merry_Christmas___Happy_New_Year_Card.png", "Duration": "506.8µs"}
+2025-12-25T05:03:44.761+0700	ERROR	handler/admin.go:107	Failed to upload photo	{"error": "file size exceeds maximum allowed size (5MB)"}
+2025-12-25T05:03:44.762+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/admin/profile/save", "Duration": "21.4545ms"}
+2025-12-25T05:03:44.767+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/dashboard?success=profile", "Duration": "578.2µs"}
+2025-12-25T05:03:44.797+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/public/assets/uploads/profile/1766613776090914700_Red_White_Modern_Merry_Christmas___Happy_New_Year_Card.png", "Duration": "605.2µs"}
+2025-12-25T05:10:17.660+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/profile", "Duration": "520.2µs"}
+2025-12-25T05:10:17.700+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/public/assets/uploads/profile/1766613776090914700_Red_White_Modern_Merry_Christmas___Happy_New_Year_Card.png", "Duration": "323.9µs"}
+2025-12-25T05:10:25.027+0700	ERROR	handler/admin.go:107	Failed to upload photo	{"error": "file size exceeds maximum allowed size (5MB)"}
+2025-12-25T05:10:25.029+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/admin/profile/save", "Duration": "70.8351ms"}
+2025-12-25T05:10:25.034+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/dashboard?success=profile", "Duration": "1.1823ms"}
+2025-12-25T05:17:13.970+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/profile", "Duration": "1.0274ms"}
+2025-12-25T05:17:14.012+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/public/assets/uploads/profile/1766613776090914700_Red_White_Modern_Merry_Christmas___Happy_New_Year_Card.png", "Duration": "340.1µs"}
+2025-12-25T05:17:20.311+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/admin/profile/save", "Duration": "13.1159ms"}
+2025-12-25T05:17:20.316+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/dashboard?success=profile", "Duration": "1.0259ms"}
+2025-12-25T05:17:20.392+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/public/assets/uploads/profile/1766614640306384100_IMG_2624.png", "Duration": "46.1658ms"}
+2025-12-25T05:17:23.761+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/", "Duration": "1.1964ms"}
+2025-12-25T05:17:23.781+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/public/assets/uploads/profile/1766614640306384100_IMG_2624.png", "Duration": "0s"}
+2025-12-25T05:53:57.948+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/profile", "Duration": "4.3884ms"}
+2025-12-25T05:53:57.984+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/public/assets/uploads/profile/1766614640306384100_IMG_2624.png", "Duration": "0s"}
+2025-12-25T05:54:06.712+0700	ERROR	handler/admin.go:106	Failed to upload photo	{"error": "file size exceeds maximum allowed size (5MB)"}
+2025-12-25T05:54:06.712+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/admin/profile/save", "Duration": "18.6767ms"}

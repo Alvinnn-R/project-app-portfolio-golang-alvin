@@ -97,3 +97,10 @@
 2025-12-23T17:55:26.605+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/admin/projects/save", "Duration": "31.959ms"}
 2025-12-23T17:55:47.702+0700	ERROR	repository/portfolio.go:354	Failed to create project	{"error": "ERROR: insert or update on table \"projects\" violates foreign key constraint \"fk_projects_profile\" (SQLSTATE 23503)"}
 2025-12-23T17:55:47.702+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/admin/projects/save", "Duration": "13.7524ms"}
+2025-12-23T17:57:15.198+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/admin/projects/save", "Duration": "20.2072ms"}
+2025-12-23T17:57:15.205+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/projects?success=saved", "Duration": "2.2809ms"}
+2025-12-23T17:57:15.343+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/public/assets/uploads/projects/1766487435189451300_screencapture-kampunganyar-glagah-id-2025-11-20-23_21_35.png", "Duration": "97.6831ms"}
+2025-12-23T17:57:20.576+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/dashboard", "Duration": "4.9676ms"}
+2025-12-23T17:57:20.607+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/public/assets/uploads/profile/1766487187793435500_IMG_2624-200x200.jpg", "Duration": "508.7µs"}
+2025-12-23T17:57:24.152+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/", "Duration": "2.2577ms"}
+2025-12-23T17:57:24.186+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/public/assets/uploads/projects/1766487435189451300_screencapture-kampunganyar-glagah-id-2025-11-20-23_21_35.png", "Duration": "411.9µs"}
