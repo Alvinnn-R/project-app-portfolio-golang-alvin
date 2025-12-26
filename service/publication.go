@@ -20,11 +20,11 @@ type PublicationServiceInterface interface {
 
 // PublicationService implements PublicationServiceInterface
 type PublicationService struct {
-	repo repository.PublicationRepositoryInterface
+	repo repository.PortfolioRepositoryInterface
 }
 
 // NewPublicationService creates a new publication service
-func NewPublicationService(repo repository.PublicationRepositoryInterface) PublicationServiceInterface {
+func NewPublicationService(repo repository.PortfolioRepositoryInterface) PublicationServiceInterface {
 	return &PublicationService{
 		repo: repo,
 	}

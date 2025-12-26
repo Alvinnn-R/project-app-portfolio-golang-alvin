@@ -17,11 +17,11 @@ type ProfileServiceInterface interface {
 
 // ProfileService implements ProfileServiceInterface
 type ProfileService struct {
-	repo repository.ProfileRepositoryInterface
+	repo repository.PortfolioRepositoryInterface
 }
 
 // NewProfileService creates a new profile service
-func NewProfileService(repo repository.ProfileRepositoryInterface) ProfileServiceInterface {
+func NewProfileService(repo repository.PortfolioRepositoryInterface) ProfileServiceInterface {
 	return &ProfileService{
 		repo: repo,
 	}

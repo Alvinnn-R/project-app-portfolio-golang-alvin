@@ -20,11 +20,11 @@ type ProjectServiceInterface interface {
 
 // ProjectService implements ProjectServiceInterface
 type ProjectService struct {
-	repo repository.ProjectRepositoryInterface
+	repo repository.PortfolioRepositoryInterface
 }
 
 // NewProjectService creates a new project service
-func NewProjectService(repo repository.ProjectRepositoryInterface) ProjectServiceInterface {
+func NewProjectService(repo repository.PortfolioRepositoryInterface) ProjectServiceInterface {
 	return &ProjectService{
 		repo: repo,
 	}

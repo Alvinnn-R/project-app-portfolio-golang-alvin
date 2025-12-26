@@ -20,11 +20,11 @@ type ExperienceServiceInterface interface {
 
 // ExperienceService implements ExperienceServiceInterface
 type ExperienceService struct {
-	repo repository.ExperienceRepositoryInterface
+	repo repository.PortfolioRepositoryInterface
 }
 
 // NewExperienceService creates a new experience service
-func NewExperienceService(repo repository.ExperienceRepositoryInterface) ExperienceServiceInterface {
+func NewExperienceService(repo repository.PortfolioRepositoryInterface) ExperienceServiceInterface {
 	return &ExperienceService{
 		repo: repo,
 	}

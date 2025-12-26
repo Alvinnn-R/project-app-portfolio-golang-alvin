@@ -50,334 +50,137 @@ type PortfolioServiceInterface interface {
 	SubmitContact(ctx context.Context, req *dto.ContactRequest) error
 }
 
-// PortfolioService implements PortfolioServiceInterface
+// PortfolioService implements PortfolioServiceInterface by aggregating all services
 type PortfolioService struct {
-	repo repository.PortfolioRepositoryInterface
+	profileSvc     ProfileServiceInterface
+	experienceSvc  ExperienceServiceInterface
+	skillSvc       SkillServiceInterface
+	projectSvc     ProjectServiceInterface
+	publicationSvc PublicationServiceInterface
+	contactSvc     ContactServiceInterface
+	repo           repository.PortfolioRepositoryInterface
 }
 
 // NewPortfolioService creates a new portfolio service
 func NewPortfolioService(repo repository.PortfolioRepositoryInterface) PortfolioServiceInterface {
 	return &PortfolioService{
-		repo: repo,
+		profileSvc:     NewProfileService(repo),
+		experienceSvc:  NewExperienceService(repo),
+		skillSvc:       NewSkillService(repo),
+		projectSvc:     NewProjectService(repo),
+		publicationSvc: NewPublicationService(repo),
+		contactSvc:     NewContactService(),
+		repo:           repo,
 	}
 }
 
-// GetProfile retrieves the main profile
+// Profile operations
 func (s *PortfolioService) GetProfile(ctx context.Context) (*model.Profile, error) {
-	return s.repo.GetProfile(ctx)
+	return s.profileSvc.GetProfile(ctx)
 }
 
-// CreateProfile creates a new profile
 func (s *PortfolioService) CreateProfile(ctx context.Context, req *dto.ProfileRequest) (*model.Profile, error) {
-	profile := &model.Profile{
-		Name:        req.Name,
-		Title:       req.Title,
-		Description: req.Description,
-		PhotoURL:    req.PhotoURL,
-		Email:       req.Email,
-		LinkedInURL: req.LinkedInURL,
-		GithubURL:   req.GithubURL,
-		CVURL:       req.CVURL,
-	}
-
-	if err := s.repo.CreateProfile(ctx, profile); err != nil {
-		return nil, err
-	}
-
-	return profile, nil
+	return s.profileSvc.CreateProfile(ctx, req)
 }
 
-// UpdateProfile updates the profile
 func (s *PortfolioService) UpdateProfile(ctx context.Context, id int64, req *dto.ProfileRequest) (*model.Profile, error) {
-	profile := &model.Profile{
-		ID:          id,
-		Name:        req.Name,
-		Title:       req.Title,
-		Description: req.Description,
-		PhotoURL:    req.PhotoURL,
-		Email:       req.Email,
-		LinkedInURL: req.LinkedInURL,
-		GithubURL:   req.GithubURL,
-		CVURL:       req.CVURL,
-	}
-
-	if err := s.repo.UpdateProfile(ctx, profile); err != nil {
-		return nil, err
-	}
-
-	return profile, nil
+	return s.profileSvc.UpdateProfile(ctx, id, req)
 }
 
-// GetAllExperiences retrieves all experiences
+// Experience operations
 func (s *PortfolioService) GetAllExperiences(ctx context.Context) ([]model.Experience, error) {
-	return s.repo.GetAllExperiences(ctx)
+	return s.experienceSvc.GetAllExperiences(ctx)
 }
 
-// GetExperienceByID retrieves an experience by ID
 func (s *PortfolioService) GetExperienceByID(ctx context.Context, id int64) (*model.Experience, error) {
-	return s.repo.GetExperienceByID(ctx, id)
+	return s.experienceSvc.GetExperienceByID(ctx, id)
 }
 
-// CreateExperience creates a new experience
 func (s *PortfolioService) CreateExperience(ctx context.Context, req *dto.ExperienceRequest) (*model.Experience, error) {
-	exp := &model.Experience{
-		Title:        req.Title,
-		Organization: req.Organization,
-		Period:       req.Period,
-		Description:  req.Description,
-		Type:         req.Type,
-		Color:        portfolioGetColorForType(req.Type, req.Color),
-	}
-
-	if err := s.repo.CreateExperience(ctx, exp); err != nil {
-		return nil, err
-	}
-
-	return exp, nil
+	return s.experienceSvc.CreateExperience(ctx, req)
 }
 
-// UpdateExperience updates an experience
 func (s *PortfolioService) UpdateExperience(ctx context.Context, id int64, req *dto.ExperienceRequest) (*model.Experience, error) {
-	exp := &model.Experience{
-		ID:           id,
-		Title:        req.Title,
-		Organization: req.Organization,
-		Period:       req.Period,
-		Description:  req.Description,
-		Type:         req.Type,
-		Color:        portfolioGetColorForType(req.Type, req.Color),
-	}
-
-	if err := s.repo.UpdateExperience(ctx, exp); err != nil {
-		return nil, err
-	}
-
-	return exp, nil
+	return s.experienceSvc.UpdateExperience(ctx, id, req)
 }
 
-// DeleteExperience deletes an experience
 func (s *PortfolioService) DeleteExperience(ctx context.Context, id int64) error {
-	return s.repo.DeleteExperience(ctx, id)
+	return s.experienceSvc.DeleteExperience(ctx, id)
 }
 
-// GetAllSkills retrieves all skills
+// Skill operations
 func (s *PortfolioService) GetAllSkills(ctx context.Context) ([]model.Skill, error) {
-	return s.repo.GetAllSkills(ctx)
+	return s.skillSvc.GetAllSkills(ctx)
 }
 
-// GetSkillsByCategory retrieves skills by category
 func (s *PortfolioService) GetSkillsByCategory(ctx context.Context, category string) ([]model.Skill, error) {
-	return s.repo.GetSkillsByCategory(ctx, category)
+	return s.skillSvc.GetSkillsByCategory(ctx, category)
 }
 
-// GetSkillByID retrieves a skill by ID
 func (s *PortfolioService) GetSkillByID(ctx context.Context, id int64) (*model.Skill, error) {
-	return s.repo.GetSkillByID(ctx, id)
+	return s.skillSvc.GetSkillByID(ctx, id)
 }
 
-// CreateSkill creates a new skill
 func (s *PortfolioService) CreateSkill(ctx context.Context, req *dto.SkillRequest) (*model.Skill, error) {
-	skill := &model.Skill{
-		Category: req.Category,
-		Name:     req.Name,
-		Level:    req.Level,
-		Color:    portfolioGetColorForLevel(req.Level, req.Color),
-	}
-
-	if err := s.repo.CreateSkill(ctx, skill); err != nil {
-		return nil, err
-	}
-
-	return skill, nil
+	return s.skillSvc.CreateSkill(ctx, req)
 }
 
-// UpdateSkill updates a skill
 func (s *PortfolioService) UpdateSkill(ctx context.Context, id int64, req *dto.SkillRequest) (*model.Skill, error) {
-	skill := &model.Skill{
-		ID:       id,
-		Category: req.Category,
-		Name:     req.Name,
-		Level:    req.Level,
-		Color:    portfolioGetColorForLevel(req.Level, req.Color),
-	}
-
-	if err := s.repo.UpdateSkill(ctx, skill); err != nil {
-		return nil, err
-	}
-
-	return skill, nil
+	return s.skillSvc.UpdateSkill(ctx, id, req)
 }
 
-// DeleteSkill deletes a skill
 func (s *PortfolioService) DeleteSkill(ctx context.Context, id int64) error {
-	return s.repo.DeleteSkill(ctx, id)
+	return s.skillSvc.DeleteSkill(ctx, id)
 }
 
-// GetAllProjects retrieves all projects
+// Project operations
 func (s *PortfolioService) GetAllProjects(ctx context.Context) ([]model.Project, error) {
-	return s.repo.GetAllProjects(ctx)
+	return s.projectSvc.GetAllProjects(ctx)
 }
 
-// GetProjectByID retrieves a project by ID
 func (s *PortfolioService) GetProjectByID(ctx context.Context, id int64) (*model.Project, error) {
-	return s.repo.GetProjectByID(ctx, id)
+	return s.projectSvc.GetProjectByID(ctx, id)
 }
 
-// CreateProject creates a new project
 func (s *PortfolioService) CreateProject(ctx context.Context, req *dto.ProjectRequest) (*model.Project, error) {
-	project := &model.Project{
-		Title:       req.Title,
-		Description: req.Description,
-		ImageURL:    req.ImageURL,
-		ProjectURL:  req.ProjectURL,
-		GithubURL:   req.GithubURL,
-		TechStack:   req.TechStack,
-		Color:       portfolioGetDefaultColor(req.Color, "cyan"),
-		ProfileID:   req.ProfileID,
-	}
-
-	if err := s.repo.CreateProject(ctx, project); err != nil {
-		return nil, err
-	}
-
-	return project, nil
+	return s.projectSvc.CreateProject(ctx, req)
 }
 
-// UpdateProject updates a project
 func (s *PortfolioService) UpdateProject(ctx context.Context, id int64, req *dto.ProjectRequest) (*model.Project, error) {
-	project := &model.Project{
-		ID:          id,
-		Title:       req.Title,
-		Description: req.Description,
-		ImageURL:    req.ImageURL,
-		ProjectURL:  req.ProjectURL,
-		GithubURL:   req.GithubURL,
-		TechStack:   req.TechStack,
-		Color:       portfolioGetDefaultColor(req.Color, "cyan"),
-		ProfileID:   req.ProfileID,
-	}
-
-	if err := s.repo.UpdateProject(ctx, project); err != nil {
-		return nil, err
-	}
-
-	return project, nil
+	return s.projectSvc.UpdateProject(ctx, id, req)
 }
 
-// DeleteProject deletes a project
 func (s *PortfolioService) DeleteProject(ctx context.Context, id int64) error {
-	return s.repo.DeleteProject(ctx, id)
+	return s.projectSvc.DeleteProject(ctx, id)
 }
 
-// GetAllPublications retrieves all publications
+// Publication operations
 func (s *PortfolioService) GetAllPublications(ctx context.Context) ([]model.Publication, error) {
-	return s.repo.GetAllPublications(ctx)
+	return s.publicationSvc.GetAllPublications(ctx)
 }
 
-// GetPublicationByID retrieves a publication by ID
 func (s *PortfolioService) GetPublicationByID(ctx context.Context, id int64) (*model.Publication, error) {
-	return s.repo.GetPublicationByID(ctx, id)
+	return s.publicationSvc.GetPublicationByID(ctx, id)
 }
 
-// CreatePublication creates a new publication
 func (s *PortfolioService) CreatePublication(ctx context.Context, req *dto.PublicationRequest) (*model.Publication, error) {
-	pub := &model.Publication{
-		Title:          req.Title,
-		Authors:        req.Authors,
-		Journal:        req.Journal,
-		Year:           req.Year,
-		Description:    req.Description,
-		ImageURL:       req.ImageURL,
-		PublicationURL: req.PublicationURL,
-		Color:          portfolioGetDefaultColor(req.Color, "red"),
-	}
-
-	if err := s.repo.CreatePublication(ctx, pub); err != nil {
-		return nil, err
-	}
-
-	return pub, nil
+	return s.publicationSvc.CreatePublication(ctx, req)
 }
 
-// UpdatePublication updates a publication
 func (s *PortfolioService) UpdatePublication(ctx context.Context, id int64, req *dto.PublicationRequest) (*model.Publication, error) {
-	pub := &model.Publication{
-		ID:             id,
-		Title:          req.Title,
-		Authors:        req.Authors,
-		Journal:        req.Journal,
-		Year:           req.Year,
-		Description:    req.Description,
-		ImageURL:       req.ImageURL,
-		PublicationURL: req.PublicationURL,
-		Color:          portfolioGetDefaultColor(req.Color, "red"),
-	}
-
-	if err := s.repo.UpdatePublication(ctx, pub); err != nil {
-		return nil, err
-	}
-
-	return pub, nil
+	return s.publicationSvc.UpdatePublication(ctx, id, req)
 }
 
-// DeletePublication deletes a publication
 func (s *PortfolioService) DeletePublication(ctx context.Context, id int64) error {
-	return s.repo.DeletePublication(ctx, id)
+	return s.publicationSvc.DeletePublication(ctx, id)
 }
 
-// GetPortfolioData retrieves all portfolio data
+// Full portfolio data
 func (s *PortfolioService) GetPortfolioData(ctx context.Context) (*model.PortfolioData, error) {
 	return s.repo.GetPortfolioData(ctx)
 }
 
-// SubmitContact handles contact form submission
+// Contact
 func (s *PortfolioService) SubmitContact(ctx context.Context, req *dto.ContactRequest) error {
-	// In a real application, you would send an email or store the contact message
-	return nil
-}
-
-// Helper functions for portfolio service
-
-// portfolioGetColorForType returns a color based on experience type
-func portfolioGetColorForType(expType, defaultColor string) string {
-	if defaultColor != "" {
-		return defaultColor
-	}
-	switch expType {
-	case "work":
-		return "cyan"
-	case "internship":
-		return "pink"
-	case "campus":
-		return "yellow"
-	case "competition":
-		return "purple"
-	default:
-		return "gray"
-	}
-}
-
-// portfolioGetColorForLevel returns a color based on skill level
-func portfolioGetColorForLevel(level, defaultColor string) string {
-	if defaultColor != "" {
-		return defaultColor
-	}
-	switch level {
-	case "advanced":
-		return "black"
-	case "intermediate":
-		return "gray"
-	case "beginner":
-		return "white"
-	default:
-		return "gray"
-	}
-}
-
-// portfolioGetDefaultColor returns the provided color or default if empty
-func portfolioGetDefaultColor(color, defaultColor string) string {
-	if color != "" {
-		return color
-	}
-	return defaultColor
+	return s.contactSvc.SubmitContact(ctx, req)
 }

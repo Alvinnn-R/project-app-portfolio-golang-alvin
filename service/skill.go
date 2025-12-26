@@ -21,11 +21,11 @@ type SkillServiceInterface interface {
 
 // SkillService implements SkillServiceInterface
 type SkillService struct {
-	repo repository.SkillRepositoryInterface
+	repo repository.PortfolioRepositoryInterface
 }
 
 // NewSkillService creates a new skill service
-func NewSkillService(repo repository.SkillRepositoryInterface) SkillServiceInterface {
+func NewSkillService(repo repository.PortfolioRepositoryInterface) SkillServiceInterface {
 	return &SkillService{
 		repo: repo,
 	}
