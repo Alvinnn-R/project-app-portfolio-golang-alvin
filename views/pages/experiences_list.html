@@ -61,15 +61,16 @@
                     </div>
                 </div>
                 <div class="flex space-x-2">
-                    <a href="/admin/experiences/{{.ID}}/edit"
+                    <a href="/admin/experiences/edit/{{.ID}}"
                         class="bg-yellow-100 neo-btn px-3 py-1 rounded text-sm font-medium">
                         Edit
                     </a>
-                    <a href="/admin/experiences/{{.ID}}/delete"
-                        class="bg-red-100 neo-btn px-3 py-1 rounded text-sm font-medium"
-                        onclick="return confirm('Are you sure you want to delete this experience?')">
-                        Delete
-                    </a>
+                    <form action="/admin/experiences/delete/{{.ID}}" method="POST" class="inline"
+                        onsubmit="return confirm('Are you sure you want to delete this experience?')">
+                        <button type="submit" class="bg-red-100 neo-btn px-3 py-1 rounded text-sm font-medium">
+                            Delete
+                        </button>
+                    </form>
                 </div>
             </div>
             {{end}}

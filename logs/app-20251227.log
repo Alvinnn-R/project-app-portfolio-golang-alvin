@@ -1,0 +1,21 @@
+2025-12-27T01:15:55.315+0700	ERROR	handler/admin.go:106	Failed to upload photo	{"error": "file size exceeds maximum allowed size (5MB)"}
+2025-12-27T01:15:55.317+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/admin/profile/save", "Duration": "29.9235ms"}
+2025-12-27T01:15:55.358+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/public/assets/uploads/profile/1766614640306384100_IMG_2624.png", "Duration": "0s"}
+2025-12-27T01:15:59.202+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/", "Duration": "40.0942ms"}
+2025-12-27T01:15:59.233+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/public/assets/uploads/projects/1766487435189451300_screencapture-kampunganyar-glagah-id-2025-11-20-23_21_35.png", "Duration": "0s"}
+2025-12-27T01:16:35.477+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/login", "Duration": "0s"}
+2025-12-27T01:16:35.488+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/dashboard", "Duration": "1.4659ms"}
+2025-12-27T01:16:42.417+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/experiences/new", "Duration": "0s"}
+2025-12-27T01:16:46.454+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/skills", "Duration": "554.5µs"}
+2025-12-27T01:16:52.319+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/profile", "Duration": "0s"}
+2025-12-27T01:16:53.392+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/dashboard", "Duration": "997µs"}
+2025-12-27T01:16:55.575+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/profile", "Duration": "0s"}
+2025-12-27T01:16:57.807+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/profile", "Duration": "0s"}
+2025-12-27T01:16:58.297+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/experiences", "Duration": "505.1µs"}
+2025-12-27T01:17:03.040+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/experiences/2/edit", "Duration": "0s"}
+2025-12-27T01:17:05.839+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/experiences/1/edit", "Duration": "0s"}
+2025-12-27T01:17:07.887+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/experiences/new", "Duration": "0s"}
+2025-12-27T01:17:26.546+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "POST", "URL": "/admin/experiences/save", "Duration": "26.8615ms"}
+2025-12-27T01:17:26.550+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/experiences?success=saved", "Duration": "505.6µs"}
+2025-12-27T01:17:30.449+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/experiences/3/delete", "Duration": "0s"}
+2025-12-27T01:17:38.874+0700	INFO	middleware/logging.go:19	Activity route	{"Method": "GET", "URL": "/admin/experiences/3/edit", "Duration": "0s"}
