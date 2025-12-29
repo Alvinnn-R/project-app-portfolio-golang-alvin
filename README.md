@@ -1,248 +1,301 @@
-# Portfolio Website - Golang
+# Personal Portfolio Website
 
-A modern portfolio web application built with Golang, PostgreSQL, and TailwindCSS featuring a neobrutalist design.
+![Go](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)
 
-## Features
+Aplikasi web portfolio personal dengan fitur admin dashboard, CRUD lengkap, dan contact form. Dibuat menggunakan Go (Golang), Chi Router, dan PostgreSQL sebagai project **Golang Intermediate Daytime Class - Lumoshive Academy Bootcamp**.
 
-- **RESTful API**: Full CRUD operations for portfolio data
-- **Clean Architecture**: Separated layers (Handler → Service → Repository)
-- **PostgreSQL Database**: Robust data storage with proper indexing
-- **HTML Template Rendering**: Server-side rendering using Go's `html/template`
-- **Neobrutalist Design**: Modern, bold UI with TailwindCSS
-- **Zap Logging**: Structured logging with file rotation
-- **Input Validation**: Comprehensive validation for all inputs
-- **Unit Tests**: 50%+ test coverage for service and DTO layers
+## Video Demo
 
-## Project Structure
+[![Watch Demo](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/a7OtsdOGbyE)
+
+**[Tonton Video Penjelasan Sistem](https://youtu.be/a7OtsdOGbyE)**
+
+---
+
+## Fitur Utama
+
+- **User Authentication** - Login system dengan JWT Cookie & Bcrypt password hashing
+- **Admin Dashboard** - Panel admin dengan protected routes
+- **CRUD Profile** - Manajemen data profil personal
+- **CRUD Experiences** - Tambah, edit, hapus pengalaman kerja
+- **CRUD Skills** - Manajemen skill dengan kategori dan level
+- **CRUD Projects** - Portfolio proyek dengan upload gambar
+- **CRUD Publications** - Manajemen publikasi/artikel
+- **Contact Form** - Form kontak dengan integrasi email (Gomail)
+- **File Upload** - Upload gambar untuk profile dan project
+- **Logging System** - Zap Logger dengan log rotation
+- **Unit Testing** - Testing dengan mock pattern
+
+---
+
+## Konsep Programming yang Diimplementasikan
+
+### 1. Clean Architecture Pattern
+
+```
+Handler (Controller) -> Service (Business Logic) -> Repository (Data Access)
+```
+
+- **Handler Layer**: HTTP request/response handling
+- **Service Layer**: Business logic & validasi
+- **Repository Layer**: Data access dengan PostgreSQL
+- **Dependency Injection**: Interface-based design
+
+### 2. Middleware Pattern
+
+- **Auth Middleware**: JWT token validation & session management
+- **Logging Middleware**: Request/response logging dengan Zap
+- **Recovery Middleware**: Panic recovery
+
+### 3. Database Integration
+
+- PostgreSQL dengan driver `pgx/v5`
+- Database migrations dengan SQL file
+- Foreign key relationships
+
+### 4. Testing
+
+- Unit testing dengan `testify/mock`
+- Mock repository pattern
+- Table-driven tests
+
+### 5. Security
+
+- JWT Authentication
+- Bcrypt password hashing
+- Protected routes
+- Input validation
+
+---
+
+## Struktur Project
 
 ```
 project-app-portfolio-golang-alvin/
+├── cmd/
+│   └── hashgen/          # CLI tool untuk generate password hash
 ├── database/
-│   ├── database.go          # Database connection and configuration
-│   └── migrations.sql        # SQL schema and sample data
-├── dto/
-│   ├── portfolio.go          # Request DTOs with validation
-│   └── portfolio_test.go     # DTO validation tests
-├── handler/
-│   ├── handler.go            # Handler initialization
-│   └── portfolio.go          # HTTP handlers for all endpoints
-├── logs/                     # Application logs directory
-├── middleware/
-│   ├── logging.go            # Request logging middleware
-│   └── middleware.go         # Middleware initialization
-├── model/
-│   ├── model.go              # Model initialization
-│   └── portfolio.go          # Data models (Profile, Experience, Skill, etc.)
-├── public/
-│   └── assets/               # Static files (CSS, images)
-├── repository/
-│   ├── repository.go         # Repository initialization
-│   └── portfolio.go          # Database operations
-├── router/
-│   └── router.go             # Route definitions
-├── service/
-│   ├── service.go            # Service initialization
-│   ├── portfolio.go          # Business logic
-│   └── portfolio_test.go     # Service unit tests
-├── utils/
-│   ├── logger.go             # Zap logger configuration
-│   ├── response.go           # HTTP response helpers
-│   └── utils.go              # Utility functions
-├── views/
-│   └── index.html            # Go HTML template
-├── go.mod                    # Go module definition
-├── main.go                   # Application entry point
-└── README.md                 # This file
+│   ├── database.go       # Database connection
+│   ├── migrations.sql    # Database schema
+│   └── mock_db.go        # Mock untuk testing
+├── dto/                  # Data Transfer Objects
+├── handler/              # HTTP Handlers
+│   ├── admin.go          # Admin dashboard handlers
+│   ├── auth.go           # Authentication handlers
+│   ├── contact.go        # Contact form handler
+│   ├── experience.go     # Experience CRUD handlers
+│   ├── portfolio.go      # Portfolio page handler
+│   ├── profile.go        # Profile CRUD handlers
+│   ├── project.go        # Project CRUD handlers
+│   ├── publication.go    # Publication CRUD handlers
+│   └── skill.go          # Skill CRUD handlers
+├── middleware/           # Middleware (Auth, Logging)
+├── model/                # Domain models
+├── repository/           # Data access layer
+├── router/               # Route definitions
+├── service/              # Business logic layer
+├── utils/                # Helper functions
+├── views/                # HTML templates
+│   ├── layouts/          # Base layouts
+│   └── pages/            # Page templates
+├── public/               # Static assets
+│   └── assets/
+│       └── uploads/      # Uploaded files
+├── logs/                 # Application logs
+├── main.go               # Entry point
+└── go.mod                # Go modules
 ```
 
-## Requirements
+---
 
-- Go 1.21 or higher
-- PostgreSQL 12 or higher
+## Cara Menggunakan
 
-## Installation
+### Prerequisites
 
-1. **Clone the repository**
+- Go 1.21+
+- PostgreSQL 13+
+- Git
+
+### Instalasi
+
+1. **Clone repository**
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Alvinnn-R/project-app-portfolio-golang-alvin.git
    cd project-app-portfolio-golang-alvin
    ```
 
 2. **Install dependencies**
 
    ```bash
-   go mod download
+   go mod tidy
    ```
 
-3. **Create the database**
+3. **Setup database**
 
    ```bash
-   # Connect to PostgreSQL and create the database
-   psql -U postgres
-   CREATE DATABASE portfolio;
-   \q
+   # Buat database
+   createdb portfolio_db
+
+   # Import schema
+   psql -U postgres -d portfolio_db -f database/migrations.sql
    ```
 
-4. **Run database migrations**
+4. **Konfigurasi environment**
+
+   Buat file `.env` atau edit konfigurasi di `database/database.go`:
+
+   ```
+   DB_HOST=localhost
+   DB_PORT=5432
+   DB_USER=postgres
+   DB_PASSWORD=yourpassword
+   DB_NAME=portfolio_db
+   JWT_SECRET=your-secret-key
+   ```
+
+5. **Generate password hash** (untuk user admin)
 
    ```bash
-   psql -U postgres -d portfolio -f database/migrations.sql
+   go run cmd/hashgen/main.go
    ```
 
-5. **Configure environment variables** (optional)
+6. **Jalankan aplikasi**
 
    ```bash
-   # Set environment variables for database connection
-   export DB_HOST=localhost
-   export DB_PORT=5432
-   export DB_USER=postgres
-   export DB_PASSWORD=your_password
-   export DB_NAME=portfolio
-   export DB_SSLMODE=disable
+   go run .
    ```
 
-6. **Run the application**
+7. **Akses aplikasi**
+   - Portfolio: `http://localhost:8080`
+   - Admin Login: `http://localhost:8080/login`
+   - Admin Dashboard: `http://localhost:8080/admin/dashboard`
 
-   ```bash
-   go run main.go
-   ```
-
-7. **Access the application**
-   - Website: http://localhost:8000
-   - API: http://localhost:8000/api/v1
+---
 
 ## API Endpoints
 
-### Portfolio
+### Public Endpoints
 
-- `GET /api/v1/portfolio` - Get full portfolio data
+| Method | Endpoint            | Description               |
+| ------ | ------------------- | ------------------------- |
+| GET    | `/`                 | Portfolio page            |
+| GET    | `/api/v1/portfolio` | Get portfolio data (JSON) |
+| POST   | `/api/v1/contact`   | Submit contact form       |
 
-### Profile
+### Auth Endpoints
 
-- `GET /api/v1/profile` - Get profile
-- `POST /api/v1/profile` - Create profile
-- `PUT /api/v1/profile/{id}` - Update profile
+| Method | Endpoint  | Description   |
+| ------ | --------- | ------------- |
+| GET    | `/login`  | Login page    |
+| POST   | `/login`  | Process login |
+| GET    | `/logout` | Logout        |
 
-### Experiences
+### Admin Endpoints (Protected)
 
-- `GET /api/v1/experiences` - Get all experiences
-- `GET /api/v1/experiences/{id}` - Get experience by ID
-- `POST /api/v1/experiences` - Create experience
-- `PUT /api/v1/experiences/{id}` - Update experience
-- `DELETE /api/v1/experiences/{id}` - Delete experience
+| Method   | Endpoint              | Description            |
+| -------- | --------------------- | ---------------------- |
+| GET      | `/admin/dashboard`    | Admin dashboard        |
+| GET/POST | `/admin/profile`      | Profile management     |
+| GET/POST | `/admin/experiences`  | Experience management  |
+| GET/POST | `/admin/skills`       | Skill management       |
+| GET/POST | `/admin/projects`     | Project management     |
+| GET/POST | `/admin/publications` | Publication management |
 
-### Skills
+### API v1 Endpoints
 
-- `GET /api/v1/skills` - Get all skills
-- `GET /api/v1/skills?category={category}` - Get skills by category
-- `GET /api/v1/skills/{id}` - Get skill by ID
-- `POST /api/v1/skills` - Create skill
-- `PUT /api/v1/skills/{id}` - Update skill
-- `DELETE /api/v1/skills/{id}` - Delete skill
+| Resource     | Endpoints                                                                      |
+| ------------ | ------------------------------------------------------------------------------ |
+| Profile      | GET, POST `/api/v1/profile`, PUT `/api/v1/profile/{id}`                        |
+| Experiences  | GET, POST `/api/v1/experiences`, GET, PUT, DELETE `/api/v1/experiences/{id}`   |
+| Skills       | GET, POST `/api/v1/skills`, GET, PUT, DELETE `/api/v1/skills/{id}`             |
+| Projects     | GET, POST `/api/v1/projects`, GET, PUT, DELETE `/api/v1/projects/{id}`         |
+| Publications | GET, POST `/api/v1/publications`, GET, PUT, DELETE `/api/v1/publications/{id}` |
 
-### Projects
+---
 
-- `GET /api/v1/projects` - Get all projects
-- `GET /api/v1/projects/{id}` - Get project by ID
-- `POST /api/v1/projects` - Create project
-- `PUT /api/v1/projects/{id}` - Update project
-- `DELETE /api/v1/projects/{id}` - Delete project
+## Database Schema
 
-### Publications
+### Tables
 
-- `GET /api/v1/publications` - Get all publications
-- `GET /api/v1/publications/{id}` - Get publication by ID
-- `POST /api/v1/publications` - Create publication
-- `PUT /api/v1/publications/{id}` - Update publication
-- `DELETE /api/v1/publications/{id}` - Delete publication
+- **users** - Admin user accounts
+- **profiles** - Personal profile information
+- **experiences** - Work experience entries
+- **skills** - Skills with category and level
+- **projects** - Portfolio projects
+- **publications** - Articles/publications
 
-### Contact
+### ERD
 
-- `POST /api/v1/contact` - Submit contact form
+Lihat file `database/migrations.sql` untuk schema lengkap.
 
-## Request Examples
+---
 
-### Create Experience
+## Testing
 
-```json
-POST /api/v1/experiences
-{
-  "title": "Software Engineer",
-  "organization": "Tech Company",
-  "period": "2022 - Present",
-  "description": "Building scalable applications",
-  "type": "work",
-  "color": "cyan"
-}
-```
-
-### Create Skill
-
-```json
-POST /api/v1/skills
-{
-  "category": "Programming Languages",
-  "name": "Go",
-  "level": "advanced",
-  "color": "black"
-}
-```
-
-### Create Project
-
-```json
-POST /api/v1/projects
-{
-  "title": "My Project",
-  "description": "Project description",
-  "image_url": "/public/assets/project.jpg",
-  "project_url": "https://example.com",
-  "github_url": "https://github.com/username/repo",
-  "tech_stack": "Go, PostgreSQL, Docker",
-  "color": "cyan"
-}
-```
-
-## Running Tests
+### Run Unit Tests
 
 ```bash
-# Run all tests with coverage
+# Test semua package
+go test ./... -v
+
+# Test dengan coverage
 go test ./... -cover
 
-# Run tests with verbose output
-go test ./dto/... ./service/... -v -cover
-
-# Generate coverage report
-go test ./... -coverprofile=coverage.out
-go tool cover -html=coverage.out
+# Test specific package
+go test ./repository/... -v
+go test ./service/... -v
 ```
 
-## Environment Variables
+### Test Files
 
-| Variable    | Description       | Default   |
-| ----------- | ----------------- | --------- |
-| DB_HOST     | Database host     | localhost |
-| DB_PORT     | Database port     | 5432      |
-| DB_USER     | Database user     | postgres  |
-| DB_PASSWORD | Database password | password  |
-| DB_NAME     | Database name     | portfolio |
-| DB_SSLMODE  | SSL mode          | disable   |
+- `repository/experience_test.go`
+- `repository/profile_test.go`
+- `repository/project_test.go`
+- `repository/publication_test.go`
+- `repository/skill_test.go`
+- `service/portfolio_test.go`
 
-## Technologies Used
+---
 
-- **Go 1.25** - Programming language
-- **Chi v5** - HTTP router
-- **pgx v5** - PostgreSQL driver
-- **Zap** - Structured logger
-- **Lumberjack** - Log rotation
-- **TailwindCSS** - CSS framework
-- **html/template** - Go templating
+## Learning Outcomes
 
-## License
+Project ini mengajarkan:
 
-MIT License
+- Clean Architecture dengan Go
+- RESTful API design
+- JWT Authentication & Authorization
+- Database integration (PostgreSQL)
+- Repository pattern & dependency injection
+- Middleware pattern (Auth, Logging, Recovery)
+- Unit testing dengan mock
+- Server-side rendering dengan HTML templates
+- File upload handling
+- Input validation & error handling
+- Logging best practices
+
+---
 
 ## Author
 
-Alvin Maulana - Bootcamp Golang PMM
+**Alvin Rama S**
+
+- GitHub: [@Alvinnn-R](https://github.com/Alvinnn-R)
+- Bootcamp: Golang Intermediate Daytime Class - Lumoshive Academy
+
+---
+
+## License
+
+This project is for educational purposes as part of Lumoshive Academy Bootcamp.
+
+---
+
+## Acknowledgments
+
+- Lumoshive Academy - Golang Bootcamp
+- Instructor & Mentors
+- Fellow bootcamp participants

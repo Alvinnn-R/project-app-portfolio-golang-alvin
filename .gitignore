@@ -1,0 +1,31 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary
+*.test
+
+# Output of go coverage
+*.out
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+logs/*.log
+
+# Uploaded files (keep folder structure with .gitkeep)
+public/assets/uploads/profile/*
+!public/assets/uploads/profile/.gitkeep
+public/assets/uploads/projects/*
+!public/assets/uploads/projects/.gitkeep
+
+# OS files
+.DS_Store
+Thumbs.db

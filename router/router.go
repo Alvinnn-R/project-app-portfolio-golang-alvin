@@ -94,57 +94,57 @@ func ApiV1Routes(h handler.Handler, mw mCostume.MiddlewareCostume) *chi.Mux {
 
 	// Profile routes
 	r.Route("/profile", func(r chi.Router) {
-		r.Get("/", h.PortfolioHandler.GetProfile)
-		r.Post("/", h.PortfolioHandler.CreateProfile)
-		r.Put("/{id}", h.PortfolioHandler.UpdateProfile)
+		r.Get("/", h.ProfileHandler.GetProfile)
+		r.Post("/", h.ProfileHandler.CreateProfile)
+		r.Put("/{id}", h.ProfileHandler.UpdateProfile)
 	})
 
 	// Experience routes
 	r.Route("/experiences", func(r chi.Router) {
-		r.Get("/", h.PortfolioHandler.GetAllExperiences)
-		r.Post("/", h.PortfolioHandler.CreateExperience)
+		r.Get("/", h.ExperienceHandler.GetAllExperiences)
+		r.Post("/", h.ExperienceHandler.CreateExperience)
 		r.Route("/{id}", func(r chi.Router) {
-			r.Get("/", h.PortfolioHandler.GetExperienceByID)
-			r.Put("/", h.PortfolioHandler.UpdateExperience)
-			r.Delete("/", h.PortfolioHandler.DeleteExperience)
+			r.Get("/", h.ExperienceHandler.GetExperienceByID)
+			r.Put("/", h.ExperienceHandler.UpdateExperience)
+			r.Delete("/", h.ExperienceHandler.DeleteExperience)
 		})
 	})
 
 	// Skill routes
 	r.Route("/skills", func(r chi.Router) {
-		r.Get("/", h.PortfolioHandler.GetAllSkills)
-		r.Post("/", h.PortfolioHandler.CreateSkill)
+		r.Get("/", h.SkillHandler.GetAllSkills)
+		r.Post("/", h.SkillHandler.CreateSkill)
 		r.Route("/{id}", func(r chi.Router) {
-			r.Get("/", h.PortfolioHandler.GetSkillByID)
-			r.Put("/", h.PortfolioHandler.UpdateSkill)
-			r.Delete("/", h.PortfolioHandler.DeleteSkill)
+			r.Get("/", h.SkillHandler.GetSkillByID)
+			r.Put("/", h.SkillHandler.UpdateSkill)
+			r.Delete("/", h.SkillHandler.DeleteSkill)
 		})
 	})
 
 	// Project routes
 	r.Route("/projects", func(r chi.Router) {
-		r.Get("/", h.PortfolioHandler.GetAllProjects)
-		r.Post("/", h.PortfolioHandler.CreateProject)
+		r.Get("/", h.ProjectHandler.GetAllProjects)
+		r.Post("/", h.ProjectHandler.CreateProject)
 		r.Route("/{id}", func(r chi.Router) {
-			r.Get("/", h.PortfolioHandler.GetProjectByID)
-			r.Put("/", h.PortfolioHandler.UpdateProject)
-			r.Delete("/", h.PortfolioHandler.DeleteProject)
+			r.Get("/", h.ProjectHandler.GetProjectByID)
+			r.Put("/", h.ProjectHandler.UpdateProject)
+			r.Delete("/", h.ProjectHandler.DeleteProject)
 		})
 	})
 
 	// Publication routes
 	r.Route("/publications", func(r chi.Router) {
-		r.Get("/", h.PortfolioHandler.GetAllPublications)
-		r.Post("/", h.PortfolioHandler.CreatePublication)
+		r.Get("/", h.PublicationHandler.GetAllPublications)
+		r.Post("/", h.PublicationHandler.CreatePublication)
 		r.Route("/{id}", func(r chi.Router) {
-			r.Get("/", h.PortfolioHandler.GetPublicationByID)
-			r.Put("/", h.PortfolioHandler.UpdatePublication)
-			r.Delete("/", h.PortfolioHandler.DeletePublication)
+			r.Get("/", h.PublicationHandler.GetPublicationByID)
+			r.Put("/", h.PublicationHandler.UpdatePublication)
+			r.Delete("/", h.PublicationHandler.DeletePublication)
 		})
 	})
 
 	// Contact form submission
-	r.Post("/contact", h.PortfolioHandler.SubmitContact)
+	r.Post("/contact", h.ContactHandler.SubmitContact)
 
 	return r
 }

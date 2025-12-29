@@ -9,16 +9,28 @@ import (
 
 // Handler contains all handlers for the application
 type Handler struct {
-	PortfolioHandler *PortfolioHandler
-	AuthHandler      *AuthHandler
-	AdminHandler     *AdminHandler
+	PortfolioHandler   *PortfolioHandler
+	ProfileHandler     *ProfileHandler
+	ExperienceHandler  *ExperienceHandler
+	SkillHandler       *SkillHandler
+	ProjectHandler     *ProjectHandler
+	PublicationHandler *PublicationHandler
+	ContactHandler     *ContactHandler
+	AuthHandler        *AuthHandler
+	AdminHandler       *AdminHandler
 }
 
 // NewHandler creates a new handler with all sub-handlers
 func NewHandler(svc service.Service, log *zap.Logger, tmpl *template.Template) Handler {
 	return Handler{
-		PortfolioHandler: NewPortfolioHandler(svc.PortfolioService, log),
-		AuthHandler:      NewAuthHandler(svc.AuthService, log, tmpl),
-		AdminHandler:     NewAdminHandler(svc.PortfolioService, log, tmpl),
+		PortfolioHandler:   NewPortfolioHandler(svc.PortfolioService, log),
+		ProfileHandler:     NewProfileHandler(svc.PortfolioService, log),
+		ExperienceHandler:  NewExperienceHandler(svc.PortfolioService, log),
+		SkillHandler:       NewSkillHandler(svc.PortfolioService, log),
+		ProjectHandler:     NewProjectHandler(svc.PortfolioService, log),
+		PublicationHandler: NewPublicationHandler(svc.PortfolioService, log),
+		ContactHandler:     NewContactHandler(svc.PortfolioService, log),
+		AuthHandler:        NewAuthHandler(svc.AuthService, log, tmpl),
+		AdminHandler:       NewAdminHandler(svc.PortfolioService, log, tmpl),
 	}
 }
